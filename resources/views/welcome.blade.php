@@ -8,11 +8,11 @@
         <div class="label">Cart</div>
         <span class="counter">0</span>
     </div>
-    <div class="f-btn cmpr-toggler" id="cmpr-btn">
+    {{-- <div class="f-btn cmpr-toggler" id="cmpr-btn">
         <i class="material-icons">library_add</i>
         <div class="label">Compare</div>
         <span class="counter">0</span>
-    </div>
+    </div> --}}
     <div class="drawer cmpr-panel " id="cmpr-panel">
         <div class="title">
             <p>Compare Product</p>
@@ -41,7 +41,7 @@
                 <div class="col-md-12 col-lg-9 d-pr-0">
                     <div class="home-slider" itemscope itemtype="https://schema.org/ItemList">
                         <div class="slide" itemprop="itemListElement" itemscope
-                            itemtype="https://schema.org/ImageObject">
+                            itemtype="">
                             <a href="information/offer/info9358.html?offer_id=1430" itemprop="url"><img
                                     src="{{ asset('storage/images/banar_images/mainbanar.jpg') }}"
                                     alt="sylhet offer" class="img-responsive" width="982" height="500"
@@ -52,7 +52,7 @@
                         </div>
                         <meta itemprop="name" content="Homepage Banners" />
                         <div class="slide" itemprop="itemListElement" itemscope
-                            itemtype="https://schema.org/ImageObject">
+                            itemtype="">
                             <a href="hp-laptop.html" itemprop="url"><img
                                     src=""
                                     alt="laptop" class="img-responsive" width="982" height="500"
@@ -63,7 +63,7 @@
                         </div>
                         <meta itemprop="name" content="Homepage Banners" />
                         <div class="slide" itemprop="itemListElement" itemscope
-                            itemtype="https://schema.org/ImageObject">
+                            itemtype="">
                             <a href="benq-monitor.html" itemprop="url"><img
                                     src="image/cache/catalog/home/banner/2026/benq-web-banner-main-982x500.webp"
                                     alt="BenQ monitor" class="img-responsive" width="982" height="500"
@@ -78,13 +78,13 @@
                 <div class="col-md-12 col-lg-3">
                     <div class="row">
                         <div class="banner-item col-sm-6 col-lg-12 m-mt-15 m-pr-8">
-                            <a href="https://startech.li/download-app"><img
+                            <a href=""><img
                                     src="{{ asset('storage/images/banar_images/subbanar.jpg') }}"
                                     alt="Frinds Trade App" width="315" height="252" /></a>
                         </div>
                         <div class="banner-item col-sm-6 col-lg-12 m-t-15 m-mt-15 m-pl-8">
                             <a href="tool/btu_calculator.html"><img
-                                    src="image/cache/catalog/ads/2026/ac-ton-315x252.webp"
+                                    src="{{ asset('storage/images/banar_images/subbanar.jpg') }}"
                                     alt="Frinds Trade AC  tonCalculater" width="315" height="252" /></a>
                         </div>
                     </div>

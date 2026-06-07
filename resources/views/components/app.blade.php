@@ -114,9 +114,9 @@
                                     href="account/login.html">Login</a></span></p>
                         </div>
                     </div>
-                    <div class="ac build-pc m-hide">
+                    {{-- <div class="ac build-pc m-hide">
                         <a class="btn" href="tool/pc_builder.html">PC Builder</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -5414,13 +5414,13 @@
                 <div class="footer-block contact-us">
                     <h4>Support</h4>
 
-                    <a href="tel:16793" class="helpline-btn footer-big-btn">
+                    <a href="tel:" class="helpline-btn footer-big-btn">
                         <div class="ic"><i class="material-icons">phone</i></div>
                         <p>9 AM - 8 PM </p>
-                        <h5>16793</h5>
+                        <h5>11111</h5>
                     </a>
 
-                    <a href="information/contact.html" class="store-locator-btn footer-big-btn">
+                    <a href="" class="store-locator-btn footer-big-btn">
                         <div class="ic"><i class="material-icons">place</i></div>
                         <p>Store Locator</p>
                         <h5>Find Our Stores</h5>
@@ -5430,25 +5430,25 @@
                 <div class="footer-block about-us">
                     <h4>About Us</h4>
                     <ul>
-                        <li><a href="affiliate-program.html">Affiliate Program</a></li>
-                        <li><a href="emi-terms.html">EMI Terms</a></li>
-                        <li><a href="about_us.html">About Us</a></li>
-                        <li><a href="online-delivery.html">Online Delivery</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="warranty-policy.html">Terms and Conditions</a></li>
-                        <li><a href="refund-policy.html">Refund and Return Policy</a></li>
-                        <li><a href="star-point-policy.html">Star Point Policy</a></li>
-                        <li><a href="career.html">Career</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="information/contact.html">Contact Us</a></li>
-                        <li><a href="product/manufacturer.html">Brands</a></li>
+                        <li><a href="">Affiliate Program</a></li>
+                        <li><a href="">EMI Terms</a></li>
+                        <li><a href="">About Us</a></li>
+                        <li><a href="">Online Delivery</a></li>
+                        <li><a href="">Privacy Policy</a></li>
+                        <li><a href="">Terms and Conditions</a></li>
+                        <li><a href="">Refund and Return Policy</a></li>
+                        <li><a href="">Star Point Policy</a></li>
+                        <li><a href="">Career</a></li>
+                        <li><a href="">Blog</a></li>
+                        <li><a href="">Contact Us</a></li>
+                        <li><a href="">Brands</a></li>
                     </ul>
                 </div>
                 <div class="footer-block org-info">
                     <h4>Stay Connected</h4>
                     <p><b class="store-name">Frinds Trade Ltd</b><br />Head Office: 28 Kazi Nazrul Islam Ave,Navana
                         Zohura Square, Dhaka 1000</p>
-                    <p><b>Email:</b><br /><a href="mailto:webteam@startechbd.com">webteam@startechbd.com</a> </p>
+                    <p><b>Email:</b><br /><a href="mailto:webteam@.com">webteam@.com</a> </p>
                 </div>
             </div>
 
@@ -5456,7 +5456,7 @@
                 <div class="app-links">
                     <span class="app-link-text">Experience Frinds Trade App on your mobile:</span>
                     <span class="app-link-items">
-                        <a class="app-link" href="https://play.google.com/store/apps/details?id=com.startech.shop"
+                        <a class="app-link" href=""
                             target="_blank" rel="noopener" title="Frinds Trade Android APP">
                             <span class="icon-sprite playstore"></span>
                             <span class="app-link-text">
@@ -5464,7 +5464,7 @@
                                 <span class="app-store">Google Play</span>
                             </span>
                         </a>
-                        <a class="app-link" href="https://apps.apple.com/app/id6443544088" target="_blank"
+                        <a class="app-link" href="" target="_blank"
                             rel="noopener" title="Frinds Trade ISO APP">
                             <span class="icon-sprite applestore"></span>
                             <span class="app-link-text">
@@ -5475,19 +5475,19 @@
                     </span>
                 </div>
                 <div class="social-links">
-                    <a href="https://whatsapp.com/channel/0029VaSRMY9AO7RINROxvC3u" target="_blank" rel="noopener"
+                    <a href="" target="_blank" rel="noopener"
                         title="Whatsapp">
                         <span class="icon-sprite whatsapp"></span>
                     </a>
-                    <a href="https://www.facebook.com/star.tech.ltd/" target="_blank" rel="noopener"
+                    <a href="" target="_blank" rel="noopener"
                         title="Facebook">
                         <span class="icon-sprite fb"></span>
                     </a>
-                    <a href="https://www.youtube.com/channel/UC-SDF_4DM3unoP7JeAodz2g" target="_blank"
+                    <a href="" target="_blank"
                         rel="noopener" title="Youtube">
                         <span class="icon-sprite youtube"></span>
                     </a>
-                    <a href="https://www.instagram.com/startech.com.bd/" target="_blank" rel="noopener"
+                    <a href="" target="_blank" rel="noopener"
                         title="Instagram">
                         <span class="icon-sprite insta"></span>
                     </a>
