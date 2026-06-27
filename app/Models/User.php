@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Database\Factories\UserFactory;
@@ -7,11 +6,15 @@ use Filament\Models\Contracts\HasName; // 1. Crucial Import
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 
-class User extends Authenticatable implements HasName // 2. Crucial Interface implementation
+
+class User extends Authenticatable implements FilamentUser// 2. Crucial Interface implementation
+
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    // use HasFactory, Notifiable;
 
     protected $fillable = [
         'name', // Using unified name field now
@@ -40,12 +43,17 @@ class User extends Authenticatable implements HasName // 2. Crucial Interface im
         // Reads the 'name' property, or falls back to email if database row name is empty/null
         return $this->name ?? $this->email;
     }
-    
+
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'password'          => 'hashed',
         ];
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->role === 'admin';
     }
 }
