@@ -16,13 +16,25 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
 
-            $table->foreignId('category_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->foreignId('brand_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('category_id')
+                ->nullable()
+                ->constrained()
+                ->cascadeOnDelete();
+
+            $table->foreignId('brand_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
 
             $table->decimal('price', 12, 2)->nullable();
-            $table->text('description')->nullable();
+            $table->decimal('regular_price', 12, 2)->nullable();
 
-            $table->string('source_url')->nullable(); 
+            $table->longText('features')->nullable();
+            $table->longText('description')->nullable();
+            $table->longText('specification')->nullable();
+
+            $table->string('source_url')->nullable();
+
             $table->timestamps();
         });
     }

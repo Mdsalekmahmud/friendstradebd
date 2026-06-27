@@ -1,0 +1,22 @@
+<?php
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class AttributeValue extends Model
+{
+    public function attribute()
+    {
+        return $this->belongsTo(Attribute::class);
+    }
+
+    public function productVariations()
+    {
+        return $this->belongsToMany(
+            ProductVariation::class,
+            'variant_attribute_values',
+            'attribute_value_id',
+            'product_variation_id'
+        );
+    }
+}

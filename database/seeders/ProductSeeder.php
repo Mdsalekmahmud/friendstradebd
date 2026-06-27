@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeders;
 
 use App\Models\Brand;
@@ -13,10 +14,6 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ProductSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-
     public function run(): void
     {
         $rows = Excel::toArray([], storage_path('app/products.xlsx'))[0];
@@ -27,44 +24,44 @@ class ProductSeeder extends Seeder
                 continue;
             }
 
+           
+            $imageColumns = [10,11, 12, 13, 14]; 
+
             // Category
             $categoryId = null;
 
-// Level 1
-            if (! empty(trim($row[5] ?? ''))) {
+            if (!empty(trim($row[1] ?? ''))) {
 
                 $cat1 = Category::firstOrCreate(
-                    ['name' => trim($row[5])],
-                    ['slug' => Str::slug(trim($row[5]))]
+                    ['name' => trim($row[1])],
+                    ['slug' => Str::slug(trim($row[1]))]
                 );
 
                 $categoryId = $cat1->id;
 
-                // Level 2
-                if (! empty(trim($row[6] ?? ''))) {
+                if (!empty(trim($row[2] ?? ''))) {
 
                     $cat2 = Category::firstOrCreate(
                         [
-                            'name'      => trim($row[6]),
+                            'name' => trim($row[2]),
                             'parent_id' => $cat1->id,
                         ],
                         [
-                            'slug' => Str::slug($row[5] . '-' . $row[6]),
+                            'slug' => Str::slug($row[1] . '-' . $row[2]),
                         ]
                     );
 
                     $categoryId = $cat2->id;
 
-                    // Level 3
-                    if (! empty(trim($row[7] ?? ''))) {
+                    if (!empty(trim($row[3] ?? ''))) {
 
                         $cat3 = Category::firstOrCreate(
                             [
-                                'name'      => trim($row[7]),
+                                'name' => trim($row[3]),
                                 'parent_id' => $cat2->id,
                             ],
                             [
-                                'slug' => Str::slug($row[5] . '-' . $row[6] . '-' . $row[7]),
+                                'slug' => Str::slug($row[1] . '-' . $row[2] . '-' . $row[3]),
                             ]
                         );
 
@@ -74,62 +71,82 @@ class ProductSeeder extends Seeder
             }
 
             // Brand
-            
-            // if (Str::contains(
-                //     Str::slug($row[7] ?? ''),
-                //     'bose-soundlink-revolve'
-                // )) {
-                    //     dd($row);
-                    // }
-                    
-
             $brandId = null;
 
-            if (! empty(trim($row[8] ?? ''))) {
+            if (!empty(trim($row[4] ?? ''))) {
 
                 $brand = Brand::firstOrCreate(
-                    ['name' => trim($row[8])],
-                    ['slug' => Str::slug(trim($row[8]))]
+                    ['name' => trim($row[4])],
+                    ['slug' => Str::slug(trim($row[4]))]
                 );
 
                 $brandId = $brand->id;
             }
 
-            // Product
-            preg_match('/\d{1,3}(,\d{3})*/', $row[9], $matches);
+            // Price
+            $price = preg_replace('/[^0-9]/', '', (string) $row[5]);
+            $price = (int) $price;
 
-            $price = isset($matches[0])
-                ? (int) str_replace(',', '', $matches[0])
-                : null;
+            if ($price > 100000000) {
+                $price = (int) substr((string) $price, 0, 6);
+            }
+
+            // Product
             $product = Product::firstOrCreate(
-                ['name' => $row[4]],
+                ['name' => trim($row[0])],
                 [
-                    'slug'        => Str::slug($row[4]) . '-' . uniqid(),
-                    'category_id' => $categoryId,
-                    'brand_id'    => $brandId,
-                    'price'       => $price,
+                    'slug'          => Str::slug($row[0]) . '-' . uniqid(),
+                    'category_id'   => $categoryId,
+                    'brand_id'      => $brandId,
+                    'price'         => $price,
+                    'regular_price' => (int) preg_replace('/[^0-9]/', '', (string) $row[6]),
+                    'features'      => $row[7] ?? null,
+                    'description'   => $row[8] ?? null,
+                    'specification' => $row[9] ?? null,
+                    'source_url'    => $row[10] ?? null,
                 ]
             );
 
-            // Image
-            $imageUrl = $row[14];
+            // Images
+            foreach ($imageColumns as $index => $column) {
 
-            if ($imageUrl) {
+                $imageUrl = trim($row[$column] ?? '');
+
+                if (!$imageUrl) {
+                    continue;
+                }
+
                 try {
-                    $response = Http::timeout(10)->get($imageUrl);
+                    $response = Http::timeout(20)->get($imageUrl);
 
                     if ($response->successful()) {
-                        $fileName = Str::slug($product->name) . '-' . uniqid() . '.jpg';
 
-                        Storage::disk('public')->put('products/' . $fileName, $response->body());
+                        $extension = pathinfo(parse_url($imageUrl, PHP_URL_PATH), PATHINFO_EXTENSION);
+
+                        if (!$extension) {
+                            $extension = 'jpg';
+                        }
+
+                        $fileName = Str::slug($product->name)
+                            . '-' . uniqid()
+                            . '.' . $extension;
+
+                        Storage::disk('public')->put(
+                            'images/productimage/' . $fileName,
+                            $response->body()
+                        );
 
                         ProductImage::create([
                             'product_id' => $product->id,
-                            'image'      => 'storage/products/' . $fileName,
+                            'image'      => 'storage/images/productimage/' . $fileName,
+                            'is_primary' => $index === 0, // row[10] = primary
                         ]);
                     }
-                } catch (\Exception $e) {}
+
+                } catch (\Exception $e) {
+                    logger()->error($e->getMessage());
+                }
             }
         }
     }
-}
+}   
