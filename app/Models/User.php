@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
+use App\Models\Role;
 
 
 class User extends Authenticatable implements FilamentUser// 2. Crucial Interface implementation
@@ -52,8 +53,14 @@ class User extends Authenticatable implements FilamentUser// 2. Crucial Interfac
         ];
     }
 
+     public function role()
+    {
+        return $this->belongsTo(Role::class); 
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->role === 'admin';
+        dd($this->role);
+        return $this->role === '1';
     }
 }
