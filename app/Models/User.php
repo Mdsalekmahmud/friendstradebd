@@ -59,8 +59,7 @@ class User extends Authenticatable implements FilamentUser// 2. Crucial Interfac
     }
 
     public function canAccessPanel(Panel $panel): bool
-    {
-        dd($this->role);
-        return $this->role === '1';
-    }
+{
+    return $this->role_id == 1;
+}
 }
