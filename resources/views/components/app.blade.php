@@ -61,6 +61,44 @@
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2BV6E3DJTL"></script>
 
+
+    <style>
+        .navbar-nav .nav-item>.drop-down.show {
+            display: block !important;
+        }
+
+        @media (max-width: 991px) {
+
+            .navbar-nav .drop-down {
+                position: static !important;
+                width: 100%;
+                box-shadow: none;
+                padding-left: 15px;
+            }
+
+            .navbar-nav .nav-item>.drop-down.show {
+                display: block !important;
+            }
+
+            .navbar-nav .nav-item:hover>.drop-down {
+                display: none;
+            }
+
+            @media (max-width:991px) {
+
+                .drop-menu-1,
+                .drop-menu-2 {
+                    position: static !important;
+                    left: auto !important;
+                    right: auto !important;
+                    top: auto !important;
+                    width: 100% !important;
+                }
+
+            }
+
+        }
+    </style>
 </head>
 
 <body class="common-home">
@@ -94,40 +132,63 @@
 
 
                 <div class="ht-item q-actions">
-                    <a href="information/offer.html" class="ac h-offer-icon">
+                    {{-- <a href="information/offer.html" class="ac h-offer-icon">
                         <div class="ic"><i class="material-icons">card_giftcard</i></div>
                         <div class="ac-content">
                             <h5>Offers</h5>
                             <p>Latest Offers</p>
                         </div>
-                    </a>
-                    <a href="happy-hour.html" class="ac h-offer-icon">
+                    </a> --}}
+                    {{-- <a href="happy-hour.html" class="ac h-offer-icon">
                         <div class="ic"><i class="material-icons blink">flash_on</i></div>
                         <div class="ac-content">
                             <h5>Happy Hour</h5>
                             <p>Special Deals</p>
                         </div>
-                    </a>
-                    <a href="tool/pc_builder.html" class="ac h-desk build-pc">
+                    </a> --}}
+                    {{-- <a href="tool/pc_builder.html" class="ac h-desk build-pc">
                         <div class="ic"><i class="material-icons">important_devices</i></div>
                         <div class="ac-content">
                             <h5 class="text">PC Builder</h5>
                         </div>
-                    </a>
-                    <div class="ac cmpr-toggler h-desk">
+                    </a> --}}
+                    {{-- <div class="ac cmpr-toggler h-desk">
                         <div class="ic"><i class="material-icons">library_add</i></div>
                         <div class="ac-content">
                             <h5 class="text">Compare (0)</h5>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="ac">
-                        <a class="ic" href="account/login.html"><i class="material-icons">person</i></a>
+                        <a class="ic" href="#">
+                            <i class="material-icons">person</i>
+                        </a>
+
                         <div class="ac-content">
-                            <a href="account/login.html">
-                                <h5>Account</h5>
-                            </a>
-                            <p><a href="account/register.html">Register</a> or <a
-                                    href="account/login.html">Login</a></span></p>
+                            @if (Auth::check())
+                                <a href="#">
+                                    <h5>{{ Auth::user()->name }}</h5>
+                                </a>
+
+                                <p>
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+                                </p>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            @else
+                                <a href="{{ route('login') }}">
+                                    <h5>Account</h5>
+                                </a>
+
+                                <p>
+                                    <a href="{{ route('register') }}">Register</a> or
+                                    <a href="{{ route('login') }}">Login</a>
+                                </p>
+                            @endif
                         </div>
                     </div>
                     {{-- <div class="ac build-pc m-hide">
@@ -289,15 +350,45 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+
         const toggler = document.getElementById('nav-toggler');
         const nav = document.getElementById('main-nav');
 
-        toggler.addEventListener('click', function() {
+        if (toggler) {
+            toggler.addEventListener('click', function() {
+                nav.classList.toggle('open');
+                toggler.classList.toggle('close');
+            });
+        }
 
-            nav.classList.toggle('open');
-            toggler.classList.toggle('close');
+        document.addEventListener('click', function(e) {
+
+            const link = e.target.closest('.has-child > .nav-link');
+
+            if (!link) return;
+
+            if (window.innerWidth < 992) {
+
+                e.preventDefault();
+
+                const submenu = link.nextElementSibling;
+
+                if (submenu) {
+                    submenu.classList.toggle('show');
+                }
+            }
 
         });
+
+    });
+
+    document.addEventListener('click', function(e) {
+
+        if (e.target.closest('.mc-toggler')) {
+            document.getElementById('cart-drawer')
+                .classList.toggle('open');
+        }
+
     });
 </script>
 @stack('js')

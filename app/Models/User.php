@@ -1,15 +1,12 @@
 <?php
 namespace App\Models;
 
-use Database\Factories\UserFactory;
-use Filament\Models\Contracts\HasName; // 1. Crucial Import
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use App\Models\Role;
+use Database\Factories\UserFactory; // 1. Crucial Import
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
-use App\Models\Role;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements FilamentUser// 2. Crucial Interface implementation
 
@@ -18,9 +15,10 @@ class User extends Authenticatable implements FilamentUser// 2. Crucial Interfac
     // use HasFactory, Notifiable;
 
     protected $fillable = [
-        'name', // Using unified name field now
-        'country',
         'role_id',
+        'name', 
+        'last_name',
+        'country',
         'c_companyname',
         'c_address',
         'c_state_country',
@@ -53,13 +51,13 @@ class User extends Authenticatable implements FilamentUser// 2. Crucial Interfac
         ];
     }
 
-     public function role()
+    public function role()
     {
-        return $this->belongsTo(Role::class); 
+        return $this->belongsTo(Role::class);
     }
 
     public function canAccessPanel(Panel $panel): bool
-{
-    return $this->role_id == 1;
-}
+    {
+        return $this->role_id == 1;
+    }
 }

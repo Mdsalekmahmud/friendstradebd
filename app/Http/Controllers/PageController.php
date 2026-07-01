@@ -174,4 +174,6 @@ class PageController extends Controller
             'primaryImageUrl'
         ));
     }
+
+    
 }

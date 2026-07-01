@@ -29,6 +29,114 @@
             color: #ffffff;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 400px;
+            max-width: 90%;
+            height: 100%;
+            background: #fff;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 9999;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .drawer.open {
+            transform: translateX(0);
+        }
+
+        .title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .title p {
+            margin: 0;
+            font-weight: bold;
+        }
+
+        #cart-close {
+            cursor: pointer;
+        }
+
+        .item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .image img {
+            width: 47px;
+            height: 47px;
+            background: #f0f0f0;
+        }
+
+        .info {
+            flex: 1;
+        }
+
+        .remove {
+            cursor: pointer;
+            color: #ff0000;
+        }
+
+        .footer {
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .input-group-btn button {
+            padding: 8px 16px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+
+        #cart-close {
+            cursor: pointer;
+            pointer-events: auto !important;
+            z-index: 10000;
+            position: relative;
+        }
     </style>
     {{-- @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
@@ -36,36 +144,52 @@
 
     <body class="common-home">
 
-        <div class="f-btn mc-toggler" id="cart">
+        <div class="f-btn cart-toggle" id="cart-btn">
             <i class="material-icons">shopping_basket</i>
             <div class="label">Cart</div>
-            <span class="counter">0</span>
         </div>
         {{-- <div class="f-btn cmpr-toggler" id="cmpr-btn">
         <i class="material-icons">library_add</i>
         <div class="label">Compare</div>
         <span class="counter">0</span>
     </div> --}}
-        <div class="drawer cmpr-panel " id="cmpr-panel">
-            <div class="title">
-                <p>Compare Product</p>
-                <span class="cmpr-toggler"><i class="material-icons">close</i></span>
-            </div>
-            <div class="content">
-                <div class="loader"></div>
-            </div>
-            <div class="footer btn-wrap"></div>
-        </div>
 
-        <div class="drawer m-cart" id="m-cart">
+
+
+        <div class="drawer m-cart" id="cart-drawer">
             <div class="title">
                 <p>YOUR CART</p>
-                <span class="mc-toggler"><i class="material-icons">close</i></span>
+                <span class="mc-toggler loaded close" id="cart-close">
+                    <i class="material-icons">close</i>
+                </span>
             </div>
             <div class="content">
-                <div class="loader"></div>
+                <div class="item">
+                    <div class="image"><img src="" alt="" width="47" height="47"></div>
+                    <div class="info">
+                        <div class="name"></div>
+                        <span class="amount">16,900৳</span>
+                        <i class="material-icons">clear</i>
+                        <span>1</span>
+                        <span class="eq">=</span>
+                        <span class="total">16,900৳</span>
+                    </div>
+                    <div class="remove" onclick="cart.remove('');" title="Remove">
+                        <i class="material-icons" aria-hidden="true">delete</i>
+                    </div>
+                </div>
             </div>
-            <div class="footer"></div>
+            <div class="footer">
+                <div class="promotion-code">
+                    <div class="input-group">
+                        <input type="text" placeholder="Promo Code" id="input-cart-coupon">
+                        <span class="input-group-btn">
+                            <button data-target="#input-cart-coupon" class="btn button-coupon"
+                                type="submit">Apply</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="bg-gray content p-tb-30">
@@ -569,4 +693,54 @@
     </body>
 
     </html>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const openBtn = document.getElementById('cart-btn');
+            const drawer = document.getElementById('cart-drawer');
+            const closeBtn = document.getElementById('cart-close');
+
+            if (!openBtn || !drawer || !closeBtn) {
+                console.error("Cart elements missing!");
+                return;
+            }
+
+            // OPEN
+            openBtn.addEventListener('click', function() {
+                drawer.classList.add('open');
+            });
+
+            // CLOSE
+            closeBtn.addEventListener('click', function() {
+                drawer.classList.remove('open');
+            });
+
+            // optional: click outside close
+            // document.addEventListener('click', function(e) {
+            //     if (!drawer.contains(e.target) && !openBtn.contains(e.target)) {
+            //         drawer.classList.remove('open');
+            //     }
+            // });
+
+            document.addEventListener('click', function(e) {
+
+                if (e.target.closest('#cart-close')) {
+                    drawer.classList.remove('open');
+                }
+
+            });
+
+            document.addEventListener('click', function(e) {
+
+                if (e.target.closest('#cart-btn')) {
+                    drawer.classList.add('open');
+                }
+
+                if (e.target.closest('#cart-close')) {
+                    drawer.classList.remove('open');
+                }
+
+            });
+        });
+    </script>
 </x-app>

@@ -20,11 +20,11 @@ $jscomp.polyfill("Object.values", function (a) { return a ? a : function (a) { v
             } return this.elements[0].innerHTML
         }; e.empty = function () { this.html(""); return this }; e.prevSiblings = function () { for (var c = [], a = this.get(0); a = a.previousElementSibling;)c.push(a); return new JQLite(c) }; e.nextSiblings = function () { for (var c = [], a = this.get(0); a = a.nextElementSibling;)c.push(a); return new JQLite(c) }; e.siblings = function (c) {
             var a = this.prevSiblings().elements.concat(this.nextSiblings().elements),
-            b = []; c ? a.forEach(function (a) { $(a).is(c) && b.push(a) }) : b = a; return new JQLite(b)
+                b = []; c ? a.forEach(function (a) { $(a).is(c) && b.push(a) }) : b = a; return new JQLite(b)
         }; e.appendToFirst = function (c) { this.elements[0].appendChild(c) }; e.prepend = function (c) { c instanceof JQLite ? c.elements.forEach(function (c) { this.elements[0].prepend(c) }.bind(this)) : this.elements[0].prepend(c); return this }; e.append = function (c) {
             c instanceof JQLite ? c.elements.forEach(function (c) { this.elements[0].appendChild(c) }.bind(this)) : c instanceof HTMLElement ? this.elements[0].appendChild(c) : "string" === typeof c && this.elements.forEach(function (a) {
                 a.innerHTML +=
-                c
+                    c
             }); return this
         }; e.before = function (c) { var a = 1 < this.size(); this.elements.forEach(function (b) { var d = b.parentNode; "string" === typeof c && (c = $(c)); c.each(function () { var c = a ? this.cloneNode(!0) : this; d.insertBefore(c, b) }) }) }; e.after = function (c) { var a = 1 < this.size(); this.elements.forEach(function (b) { var d = b.parentNode, f = b.nextSibling; "string" === typeof c && (c = $(c)); c.each(function () { var c = a ? this.cloneNode(!0) : this; f ? d.insertBefore(c, f) : d.appendChild(c) }) }) }; e.attr = function (c, a) {
             if ("undefined" !== typeof a) return this.elements.forEach(function (b) {
@@ -60,7 +60,7 @@ $jscomp.polyfill("Object.values", function (a) { return a ? a : function (a) { v
     }; e.scrollTop = function (a) { var b = this.get(0); if (!b) return null; void 0 !== a && (this.get(0).scrollTop = a); return b.scrollTop }; $.extend = function (a) { Array.prototype.slice.call(arguments, 1).forEach(function (b) { for (var c in b) a[c] = b[c] }); return a }; var q = function (a) {
         var b = a.method.toUpperCase().trim(), c = a.data, d = a.url; if (c instanceof JQLite) { var e = c.elements; c = {}; e.forEach(function (a) { a.name && (c[a.name] = a.value) }) } if ("string" !== typeof c && !(f.FormData && c instanceof FormData)) {
             e =
-            []; for (var g in c) "GET" === b ? d = updateURLVar(d, g, c[g]) : e.push(g + "=" + encodeURIComponent(c[g])); c = e.join("&")
+                []; for (var g in c) "GET" === b ? d = updateURLVar(d, g, c[g]) : e.push(g + "=" + encodeURIComponent(c[g])); c = e.join("&")
         } var m = new XMLHttpRequest; m.onreadystatechange = function () { if (m.readyState === XMLHttpRequest.DONE) { if (200 === m.status) { var b = m.response || m.responseText; "json" === a.dataType && (b = JSON.parse(b)); a.success(b) } else a.error(m, m.status, m.response); a.complete() } }; m.open(b, d, !0); "GET" !== b && a.contentType && m.setRequestHeader("Content-type", a.contentType); a.beforeSend(a); m.send(c)
     }; $.ajax = function (a) {
         var b = {
@@ -194,7 +194,7 @@ _t.activate = function (a) { this.active && (this.active.removeClass("active"), 
 }); $(function () {
     function a(a) { var b = this; a.forEach(function (a) { var c = $(a.toggle); c.on("click", function () { c.hasClass("close") ? b.hide(a) : b.show(a) }) }) } function b(a) { var b = this; b.elm = a; b.slides = []; b.dots = []; var c = $("<div>", { "class": "slider-dot" }); a.find(".slide").each(function (a, d) { d = $(d); b.slides[a] = d; var e = $("<span>", { "class": "dot" }); c.append(e); b.dots[a] = e; d.hide(); e.on("click", function () { b.showSlides(a) }) }); 0 !== b.slides.length && (a.append(c), b.index = 0, b.showSlides(0)) } function d(a) {
         var b = a.position,
-        d = '<a href="' + a.url + '"><img src="' + a.image + '" alt="' + a.title + '" class="img-responsive"></a>'; 1 == b ? setTimeout(function () { var a = new Popup(d); a.render(); localStorage.showed = c; setTimeout(function () { a.close() }, 14E3) }, 6E3) : $(".ads-pos-" + b).html(d)
+            d = '<a href="' + a.url + '"><img src="' + a.image + '" alt="' + a.title + '" class="img-responsive"></a>'; 1 == b ? setTimeout(function () { var a = new Popup(d); a.render(); localStorage.showed = c; setTimeout(function () { a.close() }, 14E3) }, 6E3) : $(".ads-pos-" + b).html(d)
     } function f(a) { var b = this; b.elm = a; var c = isNaN(a.data("date")) ? a.data("date") : parseInt(a.data("date")); b.date = (new Date(c)).getTime(); var d = setInterval(function () { var c = (new Date).getTime(); c = b.date - c; 0 > c ? (a.trigger("complete"), clearInterval(d)) : b.update(c) }, 1E3) }
     var g = $("html"), h = $("body"), l = $(".overlay"), e = a.prototype; e.show = function (a) { this.active && this.hide(this.active); var b = $(a.target), c = $(a.toggle); a.overlay && l.addClass("open"); a.no_scroll && $("body").addClass("no-scroll"); c.addClass("close"); b.addClass("open"); this.active = a }; e.hide = function (a) { if (a = a || this.active) { var b = $(a.target); $(a.toggle).removeClass("close"); b.removeClass("open"); l.removeClass("open"); $("body").removeClass("no-scroll"); this.active = a } }; var q = new a([{
         toggle: "#nav-toggler", target: "#main-nav",
@@ -216,7 +216,7 @@ _t.activate = function (a) { this.active && (this.active.removeClass("active"), 
                     b) { $.ajax({ url: "common/search_suggestion/product?keyword=" + encodeURIComponent(a), dataType: "json", success: b }) }, select: function (a) { var b = $(this), c = b.siblings("input"); b.val(a.label); c.val(a.value); c.trigger("change") }
             }); $(".form-cmpr").on("submit", function (a) { var b = $(this), c = []; b.find(".prod-id").each(function () { var b = $(this); b.val() ? c.push(b.val()) : (a.preventDefault(), b.siblings("input").addClass("error")) }); b.find("[name=product_id]").val(c.join(",")) }); e = f.prototype; e.setGroupVal = function (a, b) {
                 b =
-                b.toString(); 1 === b.length && (b = "0" + b); var c = this.elm.find("." + a); c.find(".digit").remove(); b.split("").forEach(function (a) { c.find(".tag").before('<span class="digit">' + a + "</span>") })
+                    b.toString(); 1 === b.length && (b = "0" + b); var c = this.elm.find("." + a); c.find(".digit").remove(); b.split("").forEach(function (a) { c.find(".tag").before('<span class="digit">' + a + "</span>") })
             }; e.update = function (a) { this.setGroupVal("days", Math.floor(a / 864E5)); this.setGroupVal("hours", Math.floor(a % 864E5 / 36E5)); this.setGroupVal("minutes", Math.floor(a % 36E5 / 6E4)); this.setGroupVal("seconds", Math.floor(a % 6E4 / 1E3)) }; $(".countdown").each(function () { new f($(this)) }); e = (e = localStorage.getItem("order_source")) ? JSON.parse(e) :
                 {}; try { var n = (new URL(document.referrer)).hostname.replace(/^www\./, "") } catch (m) { n = "" } k = { utm_source: getURLVar("utm_source"), utm_medium: getURLVar("utm_medium"), utm_campaign: getURLVar("utm_campaign") }; n && "startech.com.bd" !== n ? (e.referrer = n, e.referrer_timestamp = Date.now(), e.referrer_landing_url = location.pathname, delete e.direct) : "" === n && (e.direct = !0); Object.values(k).some(function (a) { return a }) && (k.utm_timestamp = Date.now(), e = { ...e, ...k }); Object.values(e).some(function (a) { return a }) && (console.log("Order Source Tracking",
                     e), localStorage.setItem("order_source", JSON.stringify(e)))
