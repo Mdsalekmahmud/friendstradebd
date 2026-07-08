@@ -1,33 +1,44 @@
-<x-app :breadcrumbs="$breadcrumbs">
+<?php if (isset($component)) { $__componentOriginal7ae6b45c011e855a5545a671a7f3568e = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal7ae6b45c011e855a5545a671a7f3568e = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.app','data' => ['breadcrumbs' => $breadcrumbs]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('app'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['breadcrumbs' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($breadcrumbs)]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
    
     <div class="container">
         <div class="basic row">
             <div class="col-md-5 left">
                 <div class="images product-images">
                     <div class="product-img-holder">
-                        <a class="thumbnail" href="{{ $primaryImageUrl }}" title="{{ $product->name }}">
-                            <img class="main-img" src="{{ $primaryImageUrl }}" title="{{ $product->name }}"
-                                alt="{{ $product->name }}" width="500" height="500">
+                        <a class="thumbnail" href="<?php echo e($primaryImageUrl); ?>" title="<?php echo e($product->name); ?>">
+                            <img class="main-img" src="<?php echo e($primaryImageUrl); ?>" title="<?php echo e($product->name); ?>"
+                                alt="<?php echo e($product->name); ?>" width="500" height="500">
                         </a>
                     </div>
 
                     <ul class="thumbnails">
-                        @foreach ($product->images as $image)
-                            @php
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                            <?php
                                 $imgPath = $image->image;
 
                                 $imgUrl = str_starts_with($imgPath, 'storage/')
                                     ? asset($imgPath)
                                     : asset('storage/' . $imgPath);
-                            @endphp
+                            ?>
 
                             <li>
-                                <a class="thumbnail" href="{{ $imgUrl }}" title="{{ $product->name }}">
-                                    <img src="{{ $imgUrl }}" title="{{ $product->name }}"
-                                        alt="{{ $product->name }}" width="74" height="74">
+                                <a class="thumbnail" href="<?php echo e($imgUrl); ?>" title="<?php echo e($product->name); ?>">
+                                    <img src="<?php echo e($imgUrl); ?>" title="<?php echo e($product->name); ?>"
+                                        alt="<?php echo e($product->name); ?>" width="74" height="74">
                                 </a>
                             </li>
-                        @endforeach
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -36,18 +47,18 @@
             <div class="col-md-7 right" id="product">
                 <div class="pd-summary">
                     <div class="product-short-info">
-                        <h1 itemprop="name" class="product-name">{{ $product->name }}</h1>
+                        <h1 itemprop="name" class="product-name"><?php echo e($product->name); ?></h1>
                         <table class="product-info-table">
                             <tbody>
                                 <tr class="product-info-group">
                                     <td class="product-info-label">Price</td>
                                     <td class="product-info-data product-price">
-                                        {{ number_format($product->price, 0, '', ',') }}৳</td>
+                                        <?php echo e(number_format($product->price, 0, '', ',')); ?>৳</td>
                                 </tr>
                                 <tr class="product-info-group">
                                     <td class="product-info-label">Regular Price</td>
                                     <td class="product-info-data product-regular-price">
-                                        {{ number_format($product->regular_price, 0, '', ',') }}৳</td>
+                                        <?php echo e(number_format($product->regular_price, 0, '', ',')); ?>৳</td>
                                 </tr>
                                 <tr class="product-info-group">
                                     <td class="product-info-label">Status</td>
@@ -61,7 +72,8 @@
                                     itemscope="">
                                     <td class="product-info-label">Brand</td>
                                     <td class="product-info-data product-brand" itemprop="name">
-                                        {{ $product->brand->name }}
+                                        <?php echo e($product->brand->name); ?>
+
                                     </td>
                                 </tr>
                             </tbody>
@@ -72,16 +84,16 @@
                         <link itemprop="itemCondition" href="http://schema.org/NewCondition">
                         <meta itemprop="priceCurrency" content="BDT">
                         <meta itemprop="price" content="1060.0000">
-                        @php
+                        <?php
                             $features = preg_split('/\r\n|\r|\n/', trim((string) $product->features));
-                        @endphp
+                        ?>
                         <h2>Key Features</h2>
                         <ul>
-                            @foreach (array_slice($features, 0, 9) as $feature)
-                                @if (trim($feature))
-                                    <li>{{ trim($feature) }}</li>
-                                @endif
-                            @endforeach
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = array_slice($features, 0, 9); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feature): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(trim($feature)): ?>
+                                    <li><?php echo e(trim($feature)); ?></li>
+                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                         </ul>
                     </div>
                     <div class="stickers">
@@ -94,54 +106,30 @@
                     </div>
                     <div class="p-opt-wrap">
                         <div class="p-opt required">
-                            @foreach ($product->variations as $variation)
-                                <div class="p-opt-lbl" id="input-option{{ $variation->attribute->id }}">
-                                    {{ $variation->attribute->name }}: <b></b>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $product->variations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $variation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                                <div class="p-opt-lbl" id="input-option<?php echo e($variation->attribute->id); ?>">
+                                    <?php echo e($variation->attribute->name); ?>: <b></b>
                                 </div>
                                 <div class="p-opt-vals">
-                                    @foreach ($variation->attributeValues as $attributeValue)
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $variation->attributeValues; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attributeValue): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                                         <label>
                                             <input class="hide" type="radio"
-                                                value="{{ $attributeValue->id }}"
-                                                name="option[{{ $variation->attribute->id }}]"
-                                                title="{{ $attributeValue->value }}">
-                                            <span>{{ $attributeValue->value }}</span>
+                                                value="<?php echo e($attributeValue->id); ?>"
+                                                name="option[<?php echo e($variation->attribute->id); ?>]"
+                                                title="<?php echo e($attributeValue->value); ?>">
+                                            <span><?php echo e($attributeValue->value); ?></span>
                                         </label>
-                                    @endforeach
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                                 </div>
-                            @endforeach
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                         </div>
                     </div>
-                    {{-- <h2>Payment Options</h2>
-                    <div class="product-price-options">
-                        <label class="p-wrap cash active">
-                            <input type="radio" name="enable_emi" checked="" value="0">
-                            <span class="price">1,060৳</span>
-                            <div class="p-tag">Cash Discount Price</div>
-                                        title="Space Black"><span>Space Black</span></label>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- <h2>Payment Options</h2>
-                    <div class="product-price-options">
-                        <label class="p-wrap cash active">
-                            <input type="radio" name="enable_emi" checked="" value="0">
-                            <span class="price">1,060৳</span>
-                            <div class="p-tag">Cash Discount Price</div>
-                            <div class="p-tag fade">Online / Cash Payment</div>
-                        </label>
-                        <label class="p-wrap emi">
-                            <input type="radio" name="enable_emi" value="1">
-                            <span class="price">97৳/month</span>
-                            <div class="p-tag regular">Regular Price: 1,166৳</div>
-                            <div class="p-tag fade">0% EMI for up to 12 Months***</div>
-                        </label>
-                    </div> --}}
+                    
                     <div class="cart-option">
-                        <form action="{{ route('cart.add') }}" method="POST">
-                            @csrf
+                        <form action="<?php echo e(route('cart.add')); ?>" method="POST">
+                            <?php echo csrf_field(); ?>
                        
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="product_id" value="<?php echo e($product->id); ?>">
                             <button id="button-cart" class="btn submit-btn" data-loading-text="Loading...">Buy
                             Now</button>
                         </form>
@@ -411,97 +399,19 @@
                         </div>
                     </section>
                 </div>
-                {{-- <div class="col-lg-3 col-md-12 c-left">
-
-                    <section class="related-product-list">
-                        <h3>Similar Product</h3>
-                        <div class="p-s-item">
-                            <div class="image-holder">
-                                <a href="https://www.startech.com.bd/amd-ryzen-5-2400g-processor"><img
-                                        src="https://www.startech.com.bd/image/cache/catalog/processor/amd/ryzen-5-2400g/ryzen-5-2400g-001-80x80.webp"
-                                        alt="AMD Ryzen 5 2400G Desktop Processor with Radeon RX Vega 11 Graphics"
-                                        width="80" height="80"></a>
-                            </div>
-                            <div class="caption">
-                                <h4 class="product-name">
-                                    <a href="https://www.startech.com.bd/amd-ryzen-5-2400g-processor">AMD Ryzen 5 2400G
-                                        Desktop Processor with Radeon RX Vega 11 Graphics</a>
-                                </h4>
-                                <div class="p-item-price price">
-                                    <span class="price-new">6,300৳</span> <span class="price-old">7,200৳</span>
-                                </div>
-                                <div class="actions">
-                                    <span class="btn-compare" onclick="compare.add('7219');"><i
-                                            class="material-icons">library_add</i>Add to Compare</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-s-item">
-                            <div class="image-holder">
-                                <a href="https://www.startech.com.bd/amd-ryzen-5-3400g-processor"><img
-                                        src="https://www.startech.com.bd/image/cache/catalog/processor/amd/ryzen-5-3400g/3400g-80x80.jpg"
-                                        alt="AMD Ryzen 5 3400G Processor with Radeon RX Vega 11 Graphics"
-                                        width="80" height="80"></a>
-                            </div>
-                            <div class="caption">
-                                <h4 class="product-name">
-                                    <a href="https://www.startech.com.bd/amd-ryzen-5-3400g-processor">AMD Ryzen 5 3400G
-                                        Processor with Radeon RX Vega 11 Graphics</a>
-                                </h4>
-                                <div class="p-item-price price">
-                                    <span class="price-new">8,500৳</span> <span class="price-old">9,500৳</span>
-                                </div>
-                                <div class="actions">
-                                    <span class="btn-compare" onclick="compare.add('10293');"><i
-                                            class="material-icons">library_add</i>Add to Compare</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-s-item">
-                            <div class="image-holder">
-                                <a href="https://www.startech.com.bd/amd-ryzen-3-3200g"><img
-                                        src="https://www.startech.com.bd/image/cache/catalog/processor/amd/ryzen-3-3200g/ryzen-3-3200g-3-80x80.jpg"
-                                        alt="AMD Ryzen 3 3200G Processor with Radeon RX Vega 8 Graphics"
-                                        width="80" height="80"></a>
-                            </div>
-                            <div class="caption">
-                                <h4 class="product-name">
-                                    <a href="https://www.startech.com.bd/amd-ryzen-3-3200g">AMD Ryzen 3 3200G Processor
-                                        with Radeon RX Vega 8 Graphics</a>
-                                </h4>
-                                <div class="p-item-price price">
-                                    <span class="price-new">6,400৳</span> <span class="price-old">7,800৳</span>
-                                </div>
-                                <div class="actions">
-                                    <span class="btn-compare" onclick="compare.add('10295');"><i
-                                            class="material-icons">library_add</i>Add to Compare</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-s-item">
-                            <div class="image-holder">
-                                <a href="https://www.startech.com.bd/amd-ryzen-5-3500-pocessor"><img
-                                        src="https://www.startech.com.bd/image/cache/catalog/processor/AMD/ryzen-3500/ryzen-3500-80x80.jpg"
-                                        alt="AMD RYZEN 5 3500 Processor" width="80" height="80"></a>
-                            </div>
-                            <div class="caption">
-                                <h4 class="product-name">
-                                    <a href="https://www.startech.com.bd/amd-ryzen-5-3500-pocessor">AMD RYZEN 5 3500
-                                        Processor</a>
-                                </h4>
-                                <div class="p-item-price price">
-                                    <span>8,650৳</span>
-                                </div>
-                                <div class="actions">
-                                    <span class="btn-compare" onclick="compare.add('11601');"><i
-                                            class="material-icons">library_add</i>Add to Compare</span>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div> --}}
+                
             </div>
         </div>
     </div>
 
-</x-app>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal7ae6b45c011e855a5545a671a7f3568e)): ?>
+<?php $attributes = $__attributesOriginal7ae6b45c011e855a5545a671a7f3568e; ?>
+<?php unset($__attributesOriginal7ae6b45c011e855a5545a671a7f3568e); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal7ae6b45c011e855a5545a671a7f3568e)): ?>
+<?php $component = $__componentOriginal7ae6b45c011e855a5545a671a7f3568e; ?>
+<?php unset($__componentOriginal7ae6b45c011e855a5545a671a7f3568e); ?>
+<?php endif; ?>
+<?php /**PATH C:\laragon\www\friendstradebd\resources\views/product_details.blade.php ENDPATH**/ ?>

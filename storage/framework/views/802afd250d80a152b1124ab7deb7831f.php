@@ -1,4 +1,15 @@
-<x-app>
+<?php if (isset($component)) { $__componentOriginal7ae6b45c011e855a5545a671a7f3568e = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal7ae6b45c011e855a5545a671a7f3568e = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.app','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('app'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
 
     <style>
         .status {
@@ -138,126 +149,14 @@
             position: relative;
         }
     </style>
-    {{-- @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
-@endpush --}}
+    
 
     <body class="common-home">
 
-        {{-- <div class="f-btn cart-toggle" id="cart-btn">
-            <i class="material-icons">shopping_basket</i>
-            <div class="label">Cart</div>
-            <span class="counter">{{ Cart::getTotalQuantity() }}</span>
-        </div> --}}
-        {{-- <div class="f-btn cmpr-toggler" id="cmpr-btn">
-        <i class="material-icons">library_add</i>
-        <div class="label">Compare</div>
-        <span class="counter">0</span>
-    </div> --}}
+        
+        
 
-        {{-- <div class="drawer m-cart" id="cart-drawer">
-            <div class="title">
-                <p>YOUR CART</p>
-                <span class="mc-toggler loaded close" id="cart-close">
-                    <i class="material-icons">close</i>
-                </span>
-            </div>
-            <div class="content">
-                <div class="content">
-
-                    @forelse($cartItems as $item)
-                        <div class="item">
-
-                            <div class="image">
-                                <img src="{{ {{ $primaryImages[$product->id] }} ?? 'images/no-image.png') }}"
-                                    alt="{{ $item->name }}" width="47" height="47">
-                            </div>
-
-                            <div class="info">
-
-                                <div class="name">
-                                    {{ $item->name }}
-                                </div>
-
-                                <span class="amount">
-                                    {{ number_format($item->price) }}৳
-                                </span>
-
-                                <span>{{ $item->quantity }}</span>
-
-                                <span class="eq">=</span>
-
-                                <span class="total">
-                                    {{ number_format($item->price * $item->quantity) }}৳
-                                </span>
-
-                            </div>
-
-                            <div class="remove" title="Remove">
-
-                                <form action="{{ route('cart.remove', $item->id) }}" method="POST"
-                                    style="display:inline;">
-
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit"
-                                        style="background:none;border:none;padding:0;cursor:pointer;">
-
-                                        <i class="material-icons" aria-hidden="true">
-                                            delete
-                                        </i>
-
-                                    </button>
-
-                                </form>
-
-                            </div>
-
-                        </div>
-
-                    @empty
-
-                        <div style="padding:20px;text-align:center;">
-                            Your cart is empty
-                        </div>
-                    @endforelse
-
-                </div>
-
-                <div class="footer">
-
-                    <div class="promotion-code">
-                        <div class="input-group">
-                            <input type="text" placeholder="Promo Code" id="input-cart-coupon">
-
-                            <span class="input-group-btn">
-                                <button data-target="#input-cart-coupon" class="btn button-coupon" type="submit">
-                                    Apply
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div style="padding:15px 0;font-weight:600;">
-                        Total :
-                        {{ number_format(\Cart::getTotal()) }}৳
-                    </div>
-
-                </div>
-            </div>
-            <div class="footer">
-                <div class="promotion-code">
-                    <div class="input-group">
-                        <input type="text" placeholder="Promo Code" id="input-cart-coupon">
-                        <span class="input-group-btn">
-                            <button data-target="#input-cart-coupon" class="btn button-coupon"
-                                type="submit">Apply</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
+        
 
         <div class="bg-gray content p-tb-30">
             <div class="container">
@@ -266,7 +165,7 @@
                         <div class="home-slider" itemscope itemtype="https://schema.org/ItemList">
                             <div class="slide" itemprop="itemListElement" itemscope itemtype="">
                                 <a href="information/offer/info9358.html?offer_id=1430" itemprop="url"><img
-                                        src="{{ asset('storage/images/banar_images/mainbanar.jpg') }}"
+                                        src="<?php echo e(asset('storage/images/banar_images/mainbanar.jpg')); ?>"
                                         alt="sylhet offer" class="img-responsive" width="982" height="500"
                                         itemprop="contentUrl" /></a>
                                 <meta itemprop="position" content="1" />
@@ -298,12 +197,12 @@
                     <div class="col-md-12 col-lg-3">
                         <div class="row">
                             <div class="banner-item col-sm-6 col-lg-12 m-mt-15 m-pr-8">
-                                <a href=""><img src="{{ asset('storage/images/banar_images/subbanar.jpg') }}"
+                                <a href=""><img src="<?php echo e(asset('storage/images/banar_images/subbanar.jpg')); ?>"
                                         alt="Frinds Trade App" width="315" height="252" /></a>
                             </div>
                             <div class="banner-item col-sm-6 col-lg-12 m-t-15 m-mt-15 m-pl-8">
                                 <a href="tool/btu_calculator.html"><img
-                                        src="{{ asset('storage/images/banar_images/subbanar.jpg') }}"
+                                        src="<?php echo e(asset('storage/images/banar_images/subbanar.jpg')); ?>"
                                         alt="Frinds Trade AC  tonCalculater" width="315" height="252" /></a>
                             </div>
                         </div>
@@ -314,37 +213,7 @@
                         Additionally,
                         our online activities are Operational. Please check our contact page for the schedule.</marquee>
                 </div>
-                {{-- <div class="row r-lnk-wrap m-home">
-                    <div class="col-lg-3 col-md-6 col-sm-6"><a href="tool/finder.html" class="c-card ws-box">
-                            <div class="ic"><i class="material-icons">laptop</i></div>
-                            <div><span class="blurb">Laptop Finder</span>
-                                <p class="m-hide">Find Your Laptop Easily</p>
-                            </div>
-                        </a></div>
-                    <div class="col-lg-3 col-md-6 col-sm-6"><a href="https://complain.startech.info.bd/"
-                            target="_blank" rel="noopener" class="c-card ws-box">
-                            <div class="ic"><i class="material-icons">feedback</i></div>
-                            <div><span class="blurb">Raise a Complain</span>
-                                <p class="m-hide">Share your experience</p>
-                            </div>
-                        </a></div>
-                    <div class="col-lg-3 col-md-6 col-sm-6"><a href="https://service.startech.com.bd/home-service"
-                            target="_blank" rel="noopener" class="c-card ws-box">
-                            <div class="ic"><i class="material-icons">home</i></div>
-                            <div><span class="blurb">Home Service
-                                </span>
-                                <p class="m-hide">Get expert help.
-                                </p>
-                            </div>
-                        </a></div>
-                    <div class="col-lg-3 col-md-6 col-sm-6"><a href="https://service.startech.com.bd/"
-                            target="_blank" rel="noopener" class="c-card ws-box">
-                            <div class="ic"><i class="material-icons">settings</i></div>
-                            <div><span class="blurb">Servicing Center</span>
-                                <p class="m-hide">Repair Your Device</p>
-                            </div>
-                        </a></div>
-                </div> --}}
+                
                 <div class="m-home m-cat">
                     <h2 class="m-header">Featured Category</h2>
                     <p class="m-blurb">Get Your Desired Product from Featured Category!</p>
@@ -352,7 +221,7 @@
                         <div class="cat-item">
                             <a href="air-conditioner.html" class="cat-item-inner">
                                 <span class="cat-icon"><img
-                                        src="{{ asset('storage/images/category-thumb/ac-48x48.png') }}"
+                                        src="<?php echo e(asset('storage/images/category-thumb/ac-48x48.png')); ?>"
                                         alt="AC Icon" width="48" height="48"></span>
                                 <p>AC</p>
                             </a>
@@ -360,7 +229,7 @@
                         <div class="cat-item">
                             <a href="portable-power-station.html" class="cat-item-inner">
                                 <span class="cat-icon"><img
-                                        src="{{ asset('storage/images/category-thumb/powerstation-48x48.png') }}"
+                                        src="<?php echo e(asset('storage/images/category-thumb/powerstation-48x48.png')); ?>"
                                         alt="Portable Power Station Icon" width="48" height="48"></span>
                                 <p>Portable Power Station</p>
                             </a>
@@ -368,7 +237,7 @@
                         <div class="cat-item">
                             <a href="air-fryer.html" class="cat-item-inner">
                                 <span class="cat-icon"><img
-                                        src="{{ asset('storage/images/category-thumb/air-fryer-48x48.png') }}"
+                                        src="<?php echo e(asset('storage/images/category-thumb/air-fryer-48x48.png')); ?>"
                                         alt="Air Fryer Icon" width="48" height="48"></span>
                                 <p>Air Fryer</p>
                             </a>
@@ -376,7 +245,7 @@
                         <div class="cat-item">
                             <a href="drone.html" class="cat-item-inner">
                                 <span class="cat-icon"><img
-                                        src="{{ asset('storage/images/category-thumb/drone-48x48.png') }}"
+                                        src="<?php echo e(asset('storage/images/category-thumb/drone-48x48.png')); ?>"
                                         alt="Drone Icon" width="48" height="48"></span>
                                 <p>Drone</p>
                             </a>
@@ -384,7 +253,7 @@
                         <div class="cat-item">
                             <a href="gimbal.html" class="cat-item-inner">
                                 <span class="cat-icon"><img
-                                        src="{{ asset('storage/images/category-thumb/gimbal-48x48.png') }}"
+                                        src="<?php echo e(asset('storage/images/category-thumb/gimbal-48x48.png')); ?>"
                                         alt="Gimbal Icon" width="48" height="48"></span>
                                 <p>Gimbal</p>
                             </a>
@@ -392,7 +261,7 @@
                         <div class="cat-item">
                             <a href="tablet-pc.html" class="cat-item-inner">
                                 <span class="cat-icon"><img
-                                        src="{{ asset('storage/images/category-thumb/tablet-48x48.png') }}"
+                                        src="<?php echo e(asset('storage/images/category-thumb/tablet-48x48.png')); ?>"
                                         alt="Table PC Icon" width="48" height="48"></span>
                                 <p>Table PC</p>
                             </a>
@@ -400,7 +269,7 @@
                         <div class="cat-item">
                             <a href="television-startech.html" class="cat-item-inner">
                                 <span class="cat-icon"><img
-                                        src="{{ asset('storage/images/category-thumb/tv-48x48.png') }}"
+                                        src="<?php echo e(asset('storage/images/category-thumb/tv-48x48.png')); ?>"
                                         alt="TV Icon" width="48" height="48"></span>
                                 <p>TV</p>
                             </a>
@@ -408,7 +277,7 @@
                         <div class="cat-item">
                             <a href="refrigerator.html" class="cat-item-inner">
                                 <span class="cat-icon"><img
-                                        src="{{ asset('storage/images/category-thumb/refrigerator-48x48.png') }}"
+                                        src="<?php echo e(asset('storage/images/category-thumb/refrigerator-48x48.png')); ?>"
                                         alt="Fridge Icon" width="48" height="48"></span>
                                 <p>Fridge</p>
                             </a>
@@ -416,7 +285,7 @@
                         <div class="cat-item">
                             <a href="mobile-phone.html" class="cat-item-inner">
                                 <span class="cat-icon"><img
-                                        src="{{ asset('storage/images/category-thumb/mobile-phone-48x48.png') }}"
+                                        src="<?php echo e(asset('storage/images/category-thumb/mobile-phone-48x48.png')); ?>"
                                         alt="Mobile Phone Icon" width="48" height="48"></span>
                                 <p>Mobile Phone</p>
                             </a>
@@ -424,7 +293,7 @@
                         <div class="cat-item">
                             <a href="mobile-phone-accessories.html" class="cat-item-inner">
                                 <span class="cat-icon"><img
-                                        src="{{ asset('storage/images/category-thumb/mobile-phone-accessories-48x48.png') }}"
+                                        src="<?php echo e(asset('storage/images/category-thumb/mobile-phone-accessories-48x48.png')); ?>"
                                         alt="Mobile Accessories Icon" width="48" height="48"></span>
                                 <p>Mobile Accessories</p>
                             </a>
@@ -432,7 +301,7 @@
                         <div class="cat-item">
                             <a href="portable-ssd.html" class="cat-item-inner">
                                 <span class="cat-icon"><img
-                                        src="{{ asset('storage/images/category-thumb/portable-ssd-48x48.png') }}"
+                                        src="<?php echo e(asset('storage/images/category-thumb/portable-ssd-48x48.png')); ?>"
                                         alt="Portable SSD Icon" width="48" height="48"></span>
                                 <p>Portable SSD</p>
                             </a>
@@ -440,7 +309,7 @@
                         <div class="cat-item">
                             <a href="wifi-camera.html" class="cat-item-inner">
                                 <span class="cat-icon"><img
-                                        src="{{ asset('storage/images/category-thumb/portable-ip-camera-48x48.png') }}"
+                                        src="<?php echo e(asset('storage/images/category-thumb/portable-ip-camera-48x48.png')); ?>"
                                         alt="WiFi Camera Icon" width="48" height="48"></span>
                                 <p>WiFi Camera</p>
                             </a>
@@ -448,7 +317,7 @@
                         <div class="cat-item">
                             <a href="trimmer.html" class="cat-item-inner">
                                 <span class="cat-icon"><img
-                                        src="{{ asset('storage/images/category-thumb/trimmer-48x48.png') }}"
+                                        src="<?php echo e(asset('storage/images/category-thumb/trimmer-48x48.png')); ?>"
                                         alt="Trimmer Icon" width="48" height="48"></span>
                                 <p>Trimmer</p>
                             </a>
@@ -456,7 +325,7 @@
                         <div class="cat-item">
                             <a href="gadget/smart-watch.html" class="cat-item-inner">
                                 <span class="cat-icon"><img
-                                        src="{{ asset('storage/images/category-thumb/smart-watch-48x48.png') }}"
+                                        src="<?php echo e(asset('storage/images/category-thumb/smart-watch-48x48.png')); ?>"
                                         alt="Smart Watch Icon" width="48" height="48"></span>
                                 <p>Smart Watch</p>
                             </a>
@@ -464,7 +333,7 @@
                         <div class="cat-item">
                             <a href="earbuds.html" class="cat-item-inner">
                                 <span class="cat-icon"><img
-                                        src="{{ asset('storage/images/category-thumb/earbuds-48x48.png') }}"
+                                        src="<?php echo e(asset('storage/images/category-thumb/earbuds-48x48.png')); ?>"
                                         alt="Earbuds Icon" width="48" height="48"></span>
                                 <p>Earbuds</p>
                             </a>
@@ -472,7 +341,7 @@
                         <div class="cat-item">
                             <a href="gaming-console.html" class="cat-item-inner">
                                 <span class="cat-icon"><img
-                                        src="{{ asset('storage/images/category-thumb/gaming-console-48x48.png') }}"
+                                        src="<?php echo e(asset('storage/images/category-thumb/gaming-console-48x48.png')); ?>"
                                         alt="Gaming Console Icon" width="48" height="48"></span>
                                 <p>Gaming Console</p>
                             </a>
@@ -498,7 +367,7 @@
                     <h3 class="m-header">Featured Products</h3>
                     <p class="m-blurb">Check &amp; Get Your Desired Product!</p>
                     <div class="p-items-wrap">
-                        @foreach ($products as $product)
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                             <div class="p-item">
                                 <div class="p-item-inner">
                                     <div class="marks" style="display:flex; width:100%; posi">
@@ -506,45 +375,46 @@
 
                                         <span class="status">
                                             <strong class="status-tag"
-                                                style="background: {{ $product->status == 'Available'
+                                                style="background: <?php echo e($product->status == 'Available'
                                                     ? '#2ecc71'
                                                     : ($product->status == 'Stock Out'
                                                         ? '#e74c3c'
                                                         : ($product->status == 'Upcoming'
                                                             ? '#f39c12'
-                                                            : '#7f8c8d')) }};
+                                                            : '#7f8c8d'))); ?>;
                                                     ">
-                                                {{ $product->status }}
+                                                <?php echo e($product->status); ?>
+
                                             </strong>
                                         </span>
                                         <span class="mark">
-                                            Save: {{ $product->regular_price - $product->price }}৳
+                                            Save: <?php echo e($product->regular_price - $product->price); ?>৳
                                         </span>
                                     </div>
-                                    <div class="p-item-img"> <a href="{{ route('productDetails',$product->slug) }}">
-                                            <img src="{{ $primaryImages[$product->id] }}" alt="{{ $product->name }}"
+                                    <div class="p-item-img"> <a href="<?php echo e(route('productDetails',$product->slug)); ?>">
+                                            <img src="<?php echo e($primaryImages[$product->id]); ?>" alt="<?php echo e($product->name); ?>"
                                                 width="228" height="228" /></a>
                                     </div>
                                     <div class="p-item-details">
                                         <h4 class="p-item-name">
                                             <a
-                                                href="{{ route('productDetails', $product->id) }}">{{ $product->name }}</a>
+                                                href="<?php echo e(route('productDetails', $product->id)); ?>"><?php echo e($product->name); ?></a>
                                         </h4>
                                         <div class="p-item-price">
-                                            @if ($product->call_for_price == 0)
-                                                <span class="price-new">{{ $product->price }}৳</span>
-                                                <span class="price-old">{{ $product->regular_price }}৳</span>
-                                            @else
+                                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($product->call_for_price == 0): ?>
+                                                <span class="price-new"><?php echo e($product->price); ?>৳</span>
+                                                <span class="price-old"><?php echo e($product->regular_price); ?>৳</span>
+                                            <?php else: ?>
                                                 <span class="price-new" style="color:red;font-weight:bold;">
                                                     Call for Price
                                                 </span>
-                                            @endif
+                                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
 
 
                     </div>
@@ -811,4 +681,14 @@
             });
         });
     </script>
-</x-app>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal7ae6b45c011e855a5545a671a7f3568e)): ?>
+<?php $attributes = $__attributesOriginal7ae6b45c011e855a5545a671a7f3568e; ?>
+<?php unset($__attributesOriginal7ae6b45c011e855a5545a671a7f3568e); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal7ae6b45c011e855a5545a671a7f3568e)): ?>
+<?php $component = $__componentOriginal7ae6b45c011e855a5545a671a7f3568e; ?>
+<?php unset($__componentOriginal7ae6b45c011e855a5545a671a7f3568e); ?>
+<?php endif; ?>
+<?php /**PATH C:\laragon\www\friendstradebd\resources\views/welcome.blade.php ENDPATH**/ ?>

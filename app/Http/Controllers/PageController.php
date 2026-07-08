@@ -3,48 +3,51 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function home(Request $request)
-{
-    $products = Product::query()
-        ->when($request->search, function ($query) use ($request) {
-            $query->search($request->search);
-        })
-        ->with('images')
-        ->inRandomOrder()
-        ->take(20)
-        ->get();
+    {
+        $cartItems = Cart::getContent();
+        $products  = Product::query()
+            ->when($request->search, function ($query) use ($request) {
+                $query->search($request->search);
+            })
+            ->with('images')
+            ->inRandomOrder()
+            ->take(20)
+            ->get();
 
-    $categories = Category::with('products')->get();
+        $categories = Category::with('products')->get();
 
-    $primaryImages = [];
+        $primaryImages = [];
 
-    foreach ($products as $product) {
+        foreach ($products as $product) {
 
-        $primaryImage = $product->images
-            ->where('is_primary', true)
-            ->first();
+            $primaryImage = $product->images
+                ->where('is_primary', true)
+                ->first();
 
-        if ($primaryImage) {
-            $imagePath = $primaryImage->image;
+            if ($primaryImage) {
+                $imagePath = $primaryImage->image;
 
-            $primaryImages[$product->id] = str_starts_with($imagePath, 'storage/')
-                ? asset($imagePath)
-                : asset('storage/' . $imagePath);
-        } else {
-            $primaryImages[$product->id] = asset('images/no-image.png');
+                $primaryImages[$product->id] = str_starts_with($imagePath, 'storage/')
+                    ? asset($imagePath)
+                    : asset('storage/' . $imagePath);
+            } else {
+                $primaryImages[$product->id] = asset('images/no-image.png');
+            }
         }
-    }
 
-    return view('welcome', compact(
-        'products',
-        'categories',
-        'primaryImages'
-    ));
-}
+        return view('welcome', compact(
+            'products',
+            'categories',
+            'primaryImages',
+            'cartItems'
+        ));
+    }
 
     public function catProducts($category)
     {
@@ -134,27 +137,18 @@ class PageController extends Controller
         ));
     }
 
-    private function getCategoryProducts($category)
+    public function productDetails(Product $product)
     {
-        $products = collect($category->products);
-
-        foreach ($category->children as $child) {
-            $products = $products->merge(
-                $this->getCategoryProducts($child)
-            );
-        }
-
-        return $products;
-    }
-
-    public function productDetails($product)
-    {
-        $product = Product::with([
+        $product->load([
             'brand',
             'category',
             'images',
-        ])->findOrFail($product);
-
+            'variations.attributeValues.attribute',
+        ]);
+        // $breadcrumbs = $this->breadcrumb([
+        //     'Product' => route('product.details', $product->id),
+        //     'Checkout'      => null,
+        // ]);
         $primaryImage = $product->images
             ->where('is_primary', true)
             ->first();
@@ -169,11 +163,57 @@ class PageController extends Controller
             $primaryImageUrl = asset('images/no-image.png');
         }
 
+        $breadcrumbs = $this->breadcrumb([
+            'Product' => route('productDetails', $product->id),
+            
+        ]);
+
         return view('product_details', compact(
             'product',
-            'primaryImageUrl'
+            'primaryImageUrl',
+            'breadcrumbs'
         ));
     }
 
-    
+    public function checkout()
+    {
+        $cartItems   = Cart::getContent();
+        $breadcrumbs = $this->breadcrumb([
+            'Shopping Cart' => route('cart'),
+            'Checkout'      => null,
+        ]);
+        return view('checkout', compact('cartItems', 'breadcrumbs'));
+    }
+
+    private function getCategoryProducts($category)
+    {
+        $products = collect($category->products);
+
+        foreach ($category->children as $child) {
+            $products = $products->merge(
+                $this->getCategoryProducts($child)
+            );
+        }
+
+        return $products;
+    }
+
+    private function breadcrumb(array $items): array
+    {
+        // $breadcrumbs = [
+        //     [
+        //         'title' => 'Home',
+        //         'url'   => route('home'),
+        //     ],
+        // ];
+
+        foreach ($items as $title => $url) {
+            $breadcrumbs[] = [
+                'title' => $title,
+                'url'   => $url,
+            ];
+        }
+
+        return $breadcrumbs;
+    }
 }

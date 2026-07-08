@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "01f94a6c45cd0ac35b3fe5a7d664284a",
+    "content-hash": "ed521a51b2de2943aaf5a15ed0d1c0ef",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -703,6 +703,68 @@
                 }
             ],
             "time": "2026-03-16T11:29:23+00:00"
+        },
+        {
+            "name": "dev-ibizinfo/laravelshoppingcart",
+            "version": "V1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dev-ibizinfo/laravelshoppingcart.git",
+                "reference": "11a63bcceb3f885d03dc553675e9f0293d8eb312"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dev-ibizinfo/laravelshoppingcart/zipball/11a63bcceb3f885d03dc553675e9f0293d8eb312",
+                "reference": "11a63bcceb3f885d03dc553675e9f0293d8eb312",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/filesystem": "^13.0",
+                "illuminate/support": "^13.0",
+                "illuminate/translation": "^13.0",
+                "illuminate/validation": "^13.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.6",
+                "phpunit/phpunit": "^12.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Cart": "Darryldecode\\Cart\\Facades\\CartFacade"
+                    },
+                    "providers": [
+                        "Darryldecode\\Cart\\CartServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Darryldecode\\": "src/Darryldecode"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "dev-ibizinfo",
+                    "email": "dev.ibizinfo@gmail.com"
+                }
+            ],
+            "description": "Laravel 13 Shopping cart",
+            "keywords": [
+                "cart",
+                "laravel",
+                "shopping cart"
+            ],
+            "support": {
+                "source": "https://github.com/dev-ibizinfo/laravelshoppingcart/tree/V1.1"
+            },
+            "time": "2026-04-06T17:40:25+00:00"
         },
         {
             "name": "dflydev/dot-access-data",

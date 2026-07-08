@@ -41,10 +41,15 @@ class Product extends Model
     }
 
     public function scopeSearch($query, $term)
-{
-    return $query->where(function ($q) use ($term) {
-        $q->where('name', 'like', "%{$term}%")
-          ->orWhere('slug', 'like', "%{$term}%");
-    });
-}
+    {
+        return $query->where(function ($q) use ($term) {
+            $q->where('name', 'like', "%{$term}%")
+                ->orWhere('slug', 'like', "%{$term}%");
+        });
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }

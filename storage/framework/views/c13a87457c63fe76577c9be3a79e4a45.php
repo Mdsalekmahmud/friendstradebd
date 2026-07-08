@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <title>Friend Trade - Leading Computer, Laptop &amp; Gadget Shop in Bangladesh</title>
     <base />
     <meta name="description"
@@ -15,24 +15,19 @@
     <meta name="keywords"
         content= "Laptop shop in Bangladesh, Laptop shop in bd, computer shop in Bangladesh, PC shop in Bangladesh, computer shop in BD, Gaming PC shop in Bangladesh, PC accessories shop in Bangladesh, best computer shop in Bangladesh, Gadget shop in bd, Gadget Shop in Bangladesh, Online Shop in BD, online computer shop in bd, computer accessories online shop in Bangladesh, computer parts shop in bd, Laptop in Bangladesh, Notebook, Laptop, Desktop, Brand PC, computer, computer store Bangladesh, laptop store Bangladesh, gaming, desktop, monitor, Friend Trade, computer accessories, Desktop accessories, Laptop accessories, Laptop Online Store in BD, adata, apacer, apple, asus, bangladesh, baseus, belkin, benq, best, boya, brother, cable, camera, canon, GPU, graphics card, Friend Trade Ltd," />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    {{-- <link href="image/catalog/logo.png" rel="icon" /> --}}
-    {{-- <link rel="preload" href="catalog/view/theme/starship/fonts/MaterialIcons-Regular.woff2" as="font"
-        crossorigin> --}}
-    {{-- <link href="catalog/view/theme/starship/style/home.min.30.css" type="text/css" rel="stylesheet" media="screen" /> --}}
-    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" type="text/css" media="screen">
-    <link href="{{ asset('assets/css/home.min.30.css') }}" rel="stylesheet" type="text/css" media="screen">
-    <link href="{{ asset('assets/css/category.min.30.css') }}" rel="stylesheet" type="text/css" media="screen">
-    <link href="{{ asset('assets/css/product.min.30.css') }}" rel="stylesheet" type="text/css" media="screen">
-    <link href="{{ asset('assets/css/checkout.min.31.css') }}" rel="stylesheet" type="text/css" media="screen">
-    <link href="{{ asset('assets/fonts/MaterialIcons-Regular.woff2') }}" rel="preload" as="font" type="font/woff2"
+    
+    
+    
+    <link href="<?php echo e(asset('assets/css/main.css')); ?>" rel="stylesheet" type="text/css" media="screen">
+    <link href="<?php echo e(asset('assets/css/home.min.30.css')); ?>" rel="stylesheet" type="text/css" media="screen">
+    <link href="<?php echo e(asset('assets/css/category.min.30.css')); ?>" rel="stylesheet" type="text/css" media="screen">
+    <link href="<?php echo e(asset('assets/css/product.min.30.css')); ?>" rel="stylesheet" type="text/css" media="screen">
+    <link href="<?php echo e(asset('assets/css/checkout.min.31.css')); ?>" rel="stylesheet" type="text/css" media="screen">
+    <link href="<?php echo e(asset('assets/fonts/MaterialIcons-Regular.woff2')); ?>" rel="preload" as="font" type="font/woff2"
         crossorigin>
-    <link href="{{ asset('assets/images/icon-sprite-v8.png') }}" rel="preload" as="image" type="image/png">
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
-    </script> --}}
-    @stack('styles')
+    <link href="<?php echo e(asset('assets/images/icon-sprite-v8.png')); ?>" rel="preload" as="image" type="image/png">
+    
+    <?php echo $__env->yieldPushContent('styles'); ?>
 
     <script type="text/javascript">
         var app = {
@@ -56,10 +51,10 @@
             }
         };
     </script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
-    <script src="{{ asset('assets/js/site.min.61.js') }}"></script>
-    <script src="{{ asset('assets/js/listing.min.8.js') }}"></script>
-    <script src="{{ asset('assets/js/product.min.193860.js') }}"></script>
+    <script src="<?php echo e(asset('assets/js/main.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/site.min.61.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/listing.min.8.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/product.min.193860.js')); ?>"></script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2BV6E3DJTL"></script>
 
@@ -104,7 +99,7 @@
 </head>
 
 <body class="common-home">
-    {{-- @dd(Cart::getContent()) --}}
+    
     <header id="header">
         <div class="top">
             <div class="container">
@@ -116,16 +111,16 @@
                             <span></span>
                         </div>
                     </div>
-                    <a class="brand" href="{{ route('home') }}"><img
-                            src="{{ asset('storage/images/banar_images/mainlogo.jpg') }}" title="Friend Trade Ltd "
+                    <a class="brand" href="<?php echo e(route('home')); ?>"><img
+                            src="<?php echo e(asset('storage/images/banar_images/mainlogo.jpg')); ?>" title="Friend Trade Ltd "
                             width="144" height="164" alt="Friend Trade Ltd "></a>
                     <div class="mbl-right h-desk">
                         <div class="ac search-toggler"><i class="material-icons">search</i></div>
                         <div class="ac mc-toggler"><i class="material-icons">shopping_basket</i><span class="counter"
-                                data-count="0"> {{ number_format(\Cart::getTotalQuantity()) }}</span></div>
+                                data-count="0"> <?php echo e(number_format(\Cart::getTotalQuantity())); ?></span></div>
                     </div>
                 </div>
-                <form action="{{ route('home') }}" method="GET">
+                <form action="<?php echo e(route('home')); ?>" method="GET">
                     <div class="ht-item search" style="width:600px" id="search">
                         <input type="text" name="search" placeholder="Search" autocomplete="off" />
                         <button type="submit" class="material-icons">search</button>
@@ -135,113 +130,92 @@
 
 
                 <div class="ht-item q-actions">
-                    {{-- <a href="information/offer.html" class="ac h-offer-icon">
-                        <div class="ic"><i class="material-icons">card_giftcard</i></div>
-                        <div class="ac-content">
-                            <h5>Offers</h5>
-                            <p>Latest Offers</p>
-                        </div>
-                    </a> --}}
-                    {{-- <a href="happy-hour.html" class="ac h-offer-icon">
-                        <div class="ic"><i class="material-icons blink">flash_on</i></div>
-                        <div class="ac-content">
-                            <h5>Happy Hour</h5>
-                            <p>Special Deals</p>
-                        </div>
-                    </a> --}}
-                    {{-- <a href="tool/pc_builder.html" class="ac h-desk build-pc">
-                        <div class="ic"><i class="material-icons">important_devices</i></div>
-                        <div class="ac-content">
-                            <h5 class="text">PC Builder</h5>
-                        </div>
-                    </a> --}}
-                    {{-- <div class="ac cmpr-toggler h-desk">
-                        <div class="ic"><i class="material-icons">library_add</i></div>
-                        <div class="ac-content">
-                            <h5 class="text">Compare (0)</h5>
-                        </div>
-                    </div> --}}
+                    
+                    
+                    
+                    
                     <div class="ac">
                         <a class="ic" href="#">
                             <i class="material-icons">person</i>
                         </a>
 
                         <div class="ac-content">
-                            @if (Auth::check())
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(Auth::check()): ?>
                                 <a href="#">
-                                    <h5>{{ Auth::user()->name }}</h5>
+                                    <h5><?php echo e(Auth::user()->name); ?></h5>
                                 </a>
 
                                 <p>
-                                    <a href="{{ route('logout') }}"
+                                    <a href="<?php echo e(route('logout')); ?>"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         Logout
                                     </a>
                                 </p>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
+                                <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
+                                    <?php echo csrf_field(); ?>
                                 </form>
-                            @else
-                                <a href="{{ route('login') }}">
+                            <?php else: ?>
+                                <a href="<?php echo e(route('login')); ?>">
                                     <h5>Account</h5>
                                 </a>
 
                                 <p>
-                                    <a href="{{ route('register') }}">Register</a> or
-                                    <a href="{{ route('login') }}">Login</a>
+                                    <a href="<?php echo e(route('register')); ?>">Register</a> or
+                                    <a href="<?php echo e(route('login')); ?>">Login</a>
                                 </p>
-                            @endif
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                         </div>
                     </div>
-                    {{-- <div class="ac build-pc m-hide">
-                        <a class="btn" href="tool/pc_builder.html">PC Builder</a>
-                    </div> --}}
+                    
                 </div>
             </div>
         </div>
 
-        @php
+        <?php
             use App\Models\Category;
             $categories = Category::with('children')->whereNull('parent_id')->get();
             $childCategory = Category::with('children')->whereNotNull('parent_id')->first();
-        @endphp
+        ?>
         <nav class="navbar" id="main-nav">
             <div class="container">
                 <ul class="navbar-nav">
-                    @foreach ($categories as $mainCategory)
-                        @if ($mainCategory->children->count() > 0)
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mainCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($mainCategory->children->count() > 0): ?>
                             <li class="nav-item has-child">
-                                <a class="nav-link" href="{{ route('catProducts', $mainCategory->id) }}">
-                                    {{ $mainCategory->name }}
+                                <a class="nav-link" href="<?php echo e(route('catProducts', $mainCategory->id)); ?>">
+                                    <?php echo e($mainCategory->name); ?>
+
                                 </a>
 
 
                                 <ul class="drop-down drop-menu-1">
-                                    @foreach ($mainCategory->children as $subCategory)
-                                        <li class="nav-item @if ($subCategory->children->count() > 0) has-child @endif">
-                                            <a class="nav-link" href="{{ route('catProducts', $subCategory->id) }}">
-                                                {{ $subCategory->name }}
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $mainCategory->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                                        <li class="nav-item <?php if($subCategory->children->count() > 0): ?> has-child <?php endif; ?>">
+                                            <a class="nav-link" href="<?php echo e(route('catProducts', $subCategory->id)); ?>">
+                                                <?php echo e($subCategory->name); ?>
+
                                             </a>
 
-                                            @if ($subCategory->children->count() > 0)
+                                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($subCategory->children->count() > 0): ?>
                                                 <ul class="drop-down drop-menu-2">
-                                                    @foreach ($subCategory->children as $childCategory)
+                                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $subCategory->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $childCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                                                         <li class="nav-item">
                                                             <a class="nav-link"
-                                                                href="{{ route('catProducts', $childCategory->id) }}">
-                                                                {{ $childCategory->name }}
+                                                                href="<?php echo e(route('catProducts', $childCategory->id)); ?>">
+                                                                <?php echo e($childCategory->name); ?>
+
                                                             </a>
                                                         </li>
-                                                    @endforeach
+                                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                                                 </ul>
-                                            @endif
+                                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                         </li>
-                                    @endforeach
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                                 </ul>
                             </li>
-                        @endif
-                    @endforeach
+                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                 </ul>
             </div>
         </nav>
@@ -249,13 +223,34 @@
 
     </header>
 
-      @if (isset($breadcrumbs))
-        <x-breadcrumb :items="$breadcrumbs" />
-    @endif
+      <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(isset($breadcrumbs)): ?>
+        <?php if (isset($component)) { $__componentOriginale19f62b34dfe0bfdf95075badcb45bc2 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginale19f62b34dfe0bfdf95075badcb45bc2 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.breadcrumb','data' => ['items' => $breadcrumbs]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('breadcrumb'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['items' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($breadcrumbs)]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginale19f62b34dfe0bfdf95075badcb45bc2)): ?>
+<?php $attributes = $__attributesOriginale19f62b34dfe0bfdf95075badcb45bc2; ?>
+<?php unset($__attributesOriginale19f62b34dfe0bfdf95075badcb45bc2); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginale19f62b34dfe0bfdf95075badcb45bc2)): ?>
+<?php $component = $__componentOriginale19f62b34dfe0bfdf95075badcb45bc2; ?>
+<?php unset($__componentOriginale19f62b34dfe0bfdf95075badcb45bc2); ?>
+<?php endif; ?>
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
     <div class="f-btn cart-toggle" id="cart-btn">
         <i class="material-icons">shopping_basket</i>
         <div class="label">Cart</div>
-        <span class="counter">{{ Cart::getTotalQuantity() }}</span>
+        <span class="counter"><?php echo e(Cart::getTotalQuantity()); ?></span>
     </div>
 
     <div class="drawer m-cart" id="cart-drawer">
@@ -270,22 +265,23 @@
 
         <div class="content">
 
-            @forelse(\Cart::getContent() as $item)
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = \Cart::getContent(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                 <div class="item">
 
                     <div class="image">
-                        <img src="{{ asset($item->attributes->image) }}" alt="{{ $item->name }}" width="47"
+                        <img src="<?php echo e(asset($item->attributes->image)); ?>" alt="<?php echo e($item->name); ?>" width="47"
                             height="47">
                     </div>
 
                     <div class="info">
 
                         <div class="name">
-                            {{ $item->name }}
+                            <?php echo e($item->name); ?>
+
                         </div>
                         <div style="display:flex;align-items:center;gap:3px;flex-wrap:wrap">
                             <span class="amount">
-                                {{ number_format($item->price) }}৳
+                                <?php echo e(number_format($item->price)); ?>৳
                             </span>
 
                             <i class="material-icons">clear</i>
@@ -295,17 +291,17 @@
 
                                 <div class="input-group-prepend">
                                     <button style="width: 30px; height: 30px; border: none; background: none;"
-                                        class="decrease" data-id="{{ $item->id }}" type="button">
+                                        class="decrease" data-id="<?php echo e($item->id); ?>" type="button">
                                         &minus;
                                     </button>
                                 </div>
 
                                 <input type="text" class="form-control text-center quantity-amount"
-                                    value="{{ $item->quantity }}" min="1" readonly>
+                                    value="<?php echo e($item->quantity); ?>" min="1" readonly>
 
                                 <div class="input-group-append">
                                     <button style="width: 30px; height: 30px; border: none; background: none;"
-                                        class="increase" data-id="{{ $item->id }}" type="button">
+                                        class="increase" data-id="<?php echo e($item->id); ?>" type="button">
                                         &plus;
                                     </button>
                                 </div>
@@ -315,35 +311,35 @@
                             <span class="eq">=</span>
 
                             <span class="total">
-                                {{ number_format($item->price * $item->quantity) }}৳
+                                <?php echo e(number_format($item->price * $item->quantity)); ?>৳
                             </span>
                         </div>
                     </div>
 
                     <div class="remove"
-                        onclick="event.preventDefault();document.getElementById('remove-{{ $item->id }}').submit();"
+                        onclick="event.preventDefault();document.getElementById('remove-<?php echo e($item->id); ?>').submit();"
                         title="Remove">
 
                         <i class="material-icons" aria-hidden="true">delete</i>
 
                     </div>
 
-                    <form id="remove-{{ $item->id }}" action="{{ route('cart.remove', $item->id) }}"
+                    <form id="remove-<?php echo e($item->id); ?>" action="<?php echo e(route('cart.remove', $item->id)); ?>"
                         method="POST" style="display:none">
 
-                        @csrf
-                        @method('DELETE')
+                        <?php echo csrf_field(); ?>
+                        <?php echo method_field('DELETE'); ?>
 
                     </form>
 
                 </div>
 
-            @empty
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
 
                 <div style="padding:15px;text-align:center;">
                     Cart is empty
                 </div>
-            @endforelse
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
 
             <div class="footer">
@@ -351,19 +347,19 @@
                 <div class="total">
                     <div class="title">Sub-Total</div>
                     <div class="amount">
-                        {{ number_format(\Cart::getSubTotal()) }}৳
+                        <?php echo e(number_format(\Cart::getSubTotal())); ?>৳
                     </div>
                 </div>
 
                 <div class="total">
                     <div class="title">Total</div>
                     <div class="amount">
-                        {{ number_format(\Cart::getTotal()) }}৳
+                        <?php echo e(number_format(\Cart::getTotal())); ?>৳
                     </div>
                 </div>
 
                 <div class="checkout-btn">
-                    <a href="{{ route('checkout') }}">
+                    <a href="<?php echo e(route('checkout')); ?>">
                         <button class="btn submit">Checkout</button>
                     </a>
                 </div>
@@ -377,7 +373,8 @@
   
 
 
-    {{ $slot }}
+    <?php echo e($slot); ?>
+
 
     <footer>
         <div class="container">
@@ -641,8 +638,9 @@
 
     });
 </script>
-@stack('js')
+<?php echo $__env->yieldPushContent('js'); ?>
 
 <!-- Mirrored from www.startech.com.bd/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Jun 2026 14:36:32 GMT -->
 
 </html>
+<?php /**PATH C:\laragon\www\friendstradebd\resources\views/components/app.blade.php ENDPATH**/ ?>

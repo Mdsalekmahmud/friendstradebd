@@ -1,4 +1,15 @@
-<x-app>
+<?php if (isset($component)) { $__componentOriginal7ae6b45c011e855a5545a671a7f3568e = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal7ae6b45c011e855a5545a671a7f3568e = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.app','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('app'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
     <style>
         /* Price Range Filter Styles */
         .price-filter-card {
@@ -225,36 +236,37 @@
             transform: translateY(-2px);
         }
     </style>
-    @push('js')
-        <script src="{{ asset('js/category-filter.js') }}"></script>
-    @endpush
+    <?php $__env->startPush('js'); ?>
+        <script src="<?php echo e(asset('js/category-filter.js')); ?>"></script>
+    <?php $__env->stopPush(); ?>
 
 
 
     <section class="after-header p-tb-10">
         <div class="container c-intro">
                 <ul class="breadcrumb" itemscope itemtype="">
-                    <li><a href="{{ route('home') }}"><i class="material-icons" title="Home">home</i></a></li>
-                    @foreach ($breadcrumbs as $crumb)
+                    <li><a href="<?php echo e(route('home')); ?>"><i class="material-icons" title="Home">home</i></a></li>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $breadcrumbs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $crumb): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                         <li itemprop="itemListElement" itemscope itemtype="">
-                            <a itemtype="" itemprop="item" href="{{ route('catProducts', $crumb->id) }}">
-                                <span itemprop="name">{{ $crumb->name }}</span>
+                            <a itemtype="" itemprop="item" href="<?php echo e(route('catProducts', $crumb->id)); ?>">
+                                <span itemprop="name"><?php echo e($crumb->name); ?></span>
                             </a>
                             <meta itemprop="position" content="1" />
                         </li>
-                    @endforeach
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                 </ul>
             <p><br></p>
             <div class="child-list">
             </div>
             <div class="child-list mb-4">
-                @if ($subCategories->count())
-                    @foreach ($subCategories as $subCategory)
-                        <a href="{{ route('catProducts', $subCategory->id) }}" class="btn btn-light border me-2 mb-2">
-                            {{ $subCategory->name }}
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($subCategories->count()): ?>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $subCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                        <a href="<?php echo e(route('catProducts', $subCategory->id)); ?>" class="btn btn-light border me-2 mb-2">
+                            <?php echo e($subCategory->name); ?>
+
                         </a>
-                    @endforeach
-                @endif
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
             </div>
         </div>
     </section>
@@ -265,11 +277,11 @@
         <div class="container">
             <div class="row">
                 <div id="column-left" class="col-sm-3">
-                    <form method="GET" action="{{ route('catProducts', $category->id) }}">
+                    <form method="GET" action="<?php echo e(route('catProducts', $category->id)); ?>">
                         <span class="lc-close"><i class="material-icons" aria-hidden="true">close</i></span>
                         <div class="filters">
 
-                            {{-- PRICE RANGE FILTER --}}
+                            
                             <div class="ws-box price-filter-card">
                                 <div class="label">
                                     <span>Price Range</span>
@@ -281,7 +293,7 @@
                                             <div class="price-input-group">
                                                 <span class="currency">৳</span>
                                                 <input type="number" id="price-min" class="price-input" min="0"
-                                                    value="{{ (int) $minPrice }}" step="100">
+                                                    value="<?php echo e((int) $minPrice); ?>" step="100">
                                             </div>
                                         </div>
                                         <div class="price-separator">—</div>
@@ -290,21 +302,21 @@
                                             <div class="price-input-group">
                                                 <span class="currency">৳</span>
                                                 <input type="number" id="price-max" class="price-input" min="0"
-                                                    value="{{ (int) $maxPrice }}" step="100">
+                                                    value="<?php echo e((int) $maxPrice); ?>" step="100">
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="rang-slider" class="price-slider" data-from="{{ (int) $minPrice }}"
-                                        data-to="{{ (int) $maxPrice }}" data-min="{{ (int) $minPrice }}"
-                                        data-max="{{ (int) $maxPrice }}"></div>
+                                    <div id="rang-slider" class="price-slider" data-from="<?php echo e((int) $minPrice); ?>"
+                                        data-to="<?php echo e((int) $maxPrice); ?>" data-min="<?php echo e((int) $minPrice); ?>"
+                                        data-max="<?php echo e((int) $maxPrice); ?>"></div>
                                     <div class="price-range-hint">
                                         <span>0৳</span>
-                                        <span>{{ number_format((int) $maxPrice, 0) }}৳</span>
+                                        <span><?php echo e(number_format((int) $maxPrice, 0)); ?>৳</span>
                                     </div>
                                 </div>
                             </div>
 
-                            {{-- AVAILABILITY FILTER --}}
+                            
                             <div class="filter-group ws-box show" data-group-type="status">
                                 <div class="label">
                                     <span>Availability</span>
@@ -328,28 +340,29 @@
                                 </div>
                             </div>
 
-                            {{-- BRAND FILTER --}}
+                            
                             <div class="filter-group ws-box show" data-group-id="brand-filter">
                                 <div class="label">
                                     <span>Brand</span>
                                 </div>
                                 <div class="items">
-                                    @foreach ($brands as $brand)
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $brands; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                                         <label class="filter filter-chip">
                                             <input type="checkbox" class="brand-filter" name="brands[]"
-                                                value="{{ $brand['id'] }}"
-                                                {{ in_array($brand['id'], request('brands', [])) ? 'checked' : '' }}>
+                                                value="<?php echo e($brand['id']); ?>"
+                                                <?php echo e(in_array($brand['id'], request('brands', [])) ? 'checked' : ''); ?>>
 
                                             <span>
-                                                {{ $brand['name'] }}
-                                                <span class="count">({{ $brand['count'] }})</span>
+                                                <?php echo e($brand['name']); ?>
+
+                                                <span class="count">(<?php echo e($brand['count']); ?>)</span>
                                             </span>
                                         </label>
-                                    @endforeach
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                                 </div>
                             </div>
 
-                            {{-- SOCKET FILTER --}}
+                            
                             <div class="filter-group ws-box show" data-group-id="socket-filter">
                                 <div class="label">
                                     <span>Socket</span>
@@ -382,7 +395,7 @@
                                 </div>
                             </div>
 
-                            {{-- NUMBER OF CORE FILTER --}}
+                            
                             <div class="filter-group ws-box show" data-group-id="core-filter">
                                 <div class="label">
                                     <span>Number of Core</span>
@@ -423,7 +436,7 @@
                                 </div>
                             </div>
 
-                            {{-- NUMBER OF THREAD FILTER --}}
+                            
                             <div class="filter-group ws-box show" data-group-id="thread-filter">
                                 <div class="label">
                                     <span>Number of Thread</span>
@@ -467,7 +480,7 @@
                                 </div>
                             </div>
 
-                            {{-- FILTER ACTION BUTTONS --}}
+                            
                             <div class="filter-actions">
                                 <button class="btn-filter-apply" id="apply-filters">Apply Filters</button>
                                 <button class="btn-filter-reset" id="reset-filters">Reset All</button>
@@ -484,7 +497,7 @@
                             <div class="col-sm-4 col-xs-2 actions">
                                 <button class="tool-btn" id="lc-toggle"><i class="material-icons">filter_list</i>
                                     Filter</button>
-                                <label class="page-heading m-hide">{{ $category->name }}</label>
+                                <label class="page-heading m-hide"><?php echo e($category->name); ?></label>
                             </div>
                             <div class="col-sm-8 col-xs-10 show-sort">
                                 <div class="form-group rs-none">
@@ -514,50 +527,50 @@
                     </div>
 
                     <div class="main-content p-items-wrap" id="product-grid">
-                        @foreach ($products as $product)
-                            <article class="p-item product-card" data-product-id="{{ $product->id }}"
-                                data-brand-id="{{ $product->brand_id ?? 0 }}"
-                                data-price="{{ (float) $product->price }}"
-                                data-socket="{{ $product->socket ?? '' }}"
-                                data-core="{{ $product->core_count ?? 0 }}"
-                                data-thread="{{ $product->thread_count ?? 0 }}"
-                                data-stock="{{ $product->stock_status ?? 'in_stock' }}">
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                            <article class="p-item product-card" data-product-id="<?php echo e($product->id); ?>"
+                                data-brand-id="<?php echo e($product->brand_id ?? 0); ?>"
+                                data-price="<?php echo e((float) $product->price); ?>"
+                                data-socket="<?php echo e($product->socket ?? ''); ?>"
+                                data-core="<?php echo e($product->core_count ?? 0); ?>"
+                                data-thread="<?php echo e($product->thread_count ?? 0); ?>"
+                                data-stock="<?php echo e($product->stock_status ?? 'in_stock'); ?>">
                                 <div class="p-item-inner">
                                     <div class="p-item-img">
-                                        <a href="{{ route('productDetails', $product->slug) }}"
+                                        <a href="<?php echo e(route('productDetails', $product->slug)); ?>"
                                             class="product-image-link">
-                                            <img src="{{ $primaryImages[$product->id] ?? asset('storage/images/no-image.png') }}"
-                                                alt="{{ $product->name }}" width="228" height="228">
+                                            <img src="<?php echo e($primaryImages[$product->id] ?? asset('storage/images/no-image.png')); ?>"
+                                                alt="<?php echo e($product->name); ?>" width="228" height="228">
                                         </a>
                                     </div>
                                     <div class="p-item-details">
                                         <div class="product-meta-row">
-                                            <span class="brand-badge">{{ $product->brand?->name ?? 'Brand' }}</span>
+                                            <span class="brand-badge"><?php echo e($product->brand?->name ?? 'Brand'); ?></span>
                                             <span
-                                                class="stock-badge">{{ ucfirst(str_replace('_', ' ', $product->status)) }}</span>
+                                                class="stock-badge"><?php echo e(ucfirst(str_replace('_', ' ', $product->status))); ?></span>
                                         </div>
                                         <h4 class="p-item-name">
                                             <a
-                                                href="{{ route('productDetails', $product->id) }}">{{ $product->name }}</a>
+                                                href="<?php echo e(route('productDetails', $product->id)); ?>"><?php echo e($product->name); ?></a>
                                         </h4>
-                                        @php
+                                        <?php
                                             $features = preg_split('/\r\n|\r|\n/', trim((string) $product->features));
-                                        @endphp
+                                        ?>
                                         <ul class="short-description">
 
-                                            @foreach (array_slice($features, 1, 5) as $feature)
-                                                @if (trim($feature))
-                                                    <li>{{ trim($feature) }}</li>
-                                                @endif
-                                            @endforeach
+                                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = array_slice($features, 1, 5); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $feature): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(trim($feature)): ?>
+                                                    <li><?php echo e(trim($feature)); ?></li>
+                                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                                         </ul>
                                         <div class="p-item-price">
                                             <span
-                                                class="price-new">{{ number_format((float) $product->price, 0) }}৳</span>
-                                            @if (!empty($product->regular_price) && (float) $product->regular_price > (float) $product->price)
+                                                class="price-new"><?php echo e(number_format((float) $product->price, 0)); ?>৳</span>
+                                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!empty($product->regular_price) && (float) $product->regular_price > (float) $product->price): ?>
                                                 <span
-                                                    class="price-old">{{ number_format((float) $product->regular_price, 0) }}৳</span>
-                                            @endif
+                                                    class="price-old"><?php echo e(number_format((float) $product->regular_price, 0)); ?>৳</span>
+                                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                         </div>
                                         <div class="actions">
                                             <button class="st-btn btn-add-cart" type="button">Buy Now</button>
@@ -566,7 +579,7 @@
                                     </div>
                                 </div>
                             </article>
-                        @endforeach
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                         <div id="no-products-found" class="no-products-found" style="display: none;">No products
                             match the selected filters.</div>
                     </div>
@@ -589,11 +602,11 @@
 
                     <div class="category-description p-15 ws-box">
                         <h1 class="MsoNormal">
-                            <b><span lang="EN">Buy {{ $category->name }} in Bangladesh at the Lowest
+                            <b><span lang="EN">Buy <?php echo e($category->name); ?> in Bangladesh at the Lowest
                                     Price</span></b>
                         </h1>
                         <p class="MsoNormal" style="text-align: justify;">
-                            <span lang="EN">Explore the latest {{ strtolower($category->name) }} collection at
+                            <span lang="EN">Explore the latest <?php echo e(strtolower($category->name)); ?> collection at
                                 Friend Trade. We bring reliable products with competitive pricing, fresh stock, and a
                                 smooth shopping experience for customers across Bangladesh.</span>
                         </p>
@@ -630,4 +643,14 @@
             document.getElementById('price-max').value = document.getElementById('price-max').getAttribute('value');
         });
     </script>
-</x-app>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal7ae6b45c011e855a5545a671a7f3568e)): ?>
+<?php $attributes = $__attributesOriginal7ae6b45c011e855a5545a671a7f3568e; ?>
+<?php unset($__attributesOriginal7ae6b45c011e855a5545a671a7f3568e); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal7ae6b45c011e855a5545a671a7f3568e)): ?>
+<?php $component = $__componentOriginal7ae6b45c011e855a5545a671a7f3568e; ?>
+<?php unset($__componentOriginal7ae6b45c011e855a5545a671a7f3568e); ?>
+<?php endif; ?>
+<?php /**PATH C:\laragon\www\friendstradebd\resources\views/cat_products.blade.php ENDPATH**/ ?>
