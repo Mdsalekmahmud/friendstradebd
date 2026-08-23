@@ -97,8 +97,36 @@
                     width: 100% !important;
                 }
 
+                
             }
 
+        }
+
+
+        #search {
+            width: 600px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Tablet */
+        @media (max-width: 991px) {
+            #search {
+                width: 400px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 767px) {
+            #search {
+                width: 100%;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            #search input {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -120,13 +148,16 @@
                             src="{{ asset('storage/images/banar_images/mainlogo.jpg') }}" title="Friend Trade Ltd "
                             width="144" height="164" alt="Friend Trade Ltd "></a>
                     <div class="mbl-right h-desk">
-                        <div class="ac search-toggler"><i class="material-icons">search</i></div>
+                        <div class="ac search-toggler" id="search-toggler">
+                            <i class="material-icons">search</i>
+                        </div>
+
                         <div class="ac mc-toggler"><i class="material-icons">shopping_basket</i><span class="counter"
                                 data-count="0"> {{ number_format(\Cart::getTotalQuantity()) }}</span></div>
                     </div>
                 </div>
                 <form action="{{ route('home') }}" method="GET">
-                    <div class="ht-item search" style="width:600px" id="search">
+                    <div class="ht-item search" id="search">
                         <input type="text" name="search" placeholder="Search" autocomplete="off" />
                         <button type="submit" class="material-icons">search</button>
                     </div>
@@ -249,7 +280,7 @@
 
     </header>
 
-      @if (isset($breadcrumbs))
+    @if (isset($breadcrumbs))
         <x-breadcrumb :items="$breadcrumbs" />
     @endif
     <div class="f-btn cart-toggle" id="cart-btn">
@@ -374,7 +405,7 @@
 
 
     </div>
-  
+
 
 
     {{ $slot }}
@@ -639,6 +670,40 @@
 
         }
 
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const toggler = document.getElementById("search-toggler");
+        const search = document.getElementById("search");
+        const input = search.querySelector("input");
+
+        // Toggle search
+        toggler.addEventListener("click", (e) => {
+            e.stopPropagation();
+
+            const isOpen = search.classList.toggle("show");
+
+            if (isOpen) {
+                input.focus();
+            }
+        });
+
+        // Prevent closing when clicking inside the search
+        search.addEventListener("click", (e) => {
+            e.stopPropagation();
+        });
+
+        // Close when clicking anywhere else
+        document.addEventListener("click", () => {
+            search.classList.remove("show");
+        });
+
+        // Close with Escape key
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                search.classList.remove("show");
+            }
+        });
     });
 </script>
 @stack('js')

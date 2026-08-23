@@ -61,7 +61,7 @@
                                     itemscope="">
                                     <td class="product-info-label">Brand</td>
                                     <td class="product-info-data product-brand" itemprop="name">
-                                        {{ $product->brand->name }}
+                                        {{ $product->brand?->name ?? 'Brand' }}
                                     </td>
                                 </tr>
                             </tbody>
@@ -95,8 +95,8 @@
                     <div class="p-opt-wrap">
                         <div class="p-opt required">
                             @foreach ($product->variations as $variation)
-                                <div class="p-opt-lbl" id="input-option{{ $variation->attribute->id }}">
-                                    {{ $variation->attribute->name }}: <b></b>
+                                <div class="p-opt-lbl" id="input-option{{ $variation->attribute?->id ?? $variation->id }}">
+                                    {{ $variation->attribute?->name ?? '' }}: <b></b>
                                 </div>
                                 <div class="p-opt-vals">
                                     @foreach ($variation->attributeValues as $attributeValue)

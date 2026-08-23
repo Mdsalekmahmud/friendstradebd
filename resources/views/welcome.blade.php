@@ -259,7 +259,7 @@
             </div>
         </div> --}}
 
-        <div class="bg-gray content p-tb-30">
+        <di v class="bg-gray content p-tb-30">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-lg-9 d-pr-0">
@@ -755,7 +755,7 @@
                 </div>
 
             </div>
-        </div>
+        </di>
 
         <div class="overlay"></div>
     </body>

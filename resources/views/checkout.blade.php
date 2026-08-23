@@ -339,11 +339,10 @@
                                         <td class="name">
                                             1 X
                                             <a
-                                                href="https://www.startech.com.bd/ecoflow-river-3-portable-power-station">EcoFlow
-                                                River 3 Portable Power Station</a>
+                                                href=""></a>
 
                                         </td>
-                                        <td class="price text-right">24,590৳ </td>
+                                        <td class="price text-right"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -398,7 +397,7 @@
                                     <tbody>
                                         <tr>
                                             <td class="text-left">Sub-Total:</td>
-                                            <td class="text-right amount"> <strong>24,590৳</strong> </td>
+                                            <td class="text-right amount"> <strong>{{ Cart::getTotal()}}</strong> </td>
                                         </tr>
                                         <tr>
                                             <td class="text-left">Home Delivery:</td>
@@ -406,7 +405,7 @@
                                         </tr>
                                         <tr>
                                             <td class="text-left">Total:</td>
-                                            <td class="text-right amount"> <strong>24,700৳</strong> </td>
+                                            <td class="text-right amount"> <strong>{{ Cart::getTotal() + 110 }}</strong> </td>
                                         </tr>
                                     </tbody>
                                 </table>

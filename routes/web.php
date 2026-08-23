@@ -4,7 +4,7 @@ use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
-Route::get('/login', [PageController::class, 'login'])->name('login');
+Route::get('/login', [PageController::class, 'login'])->name('login');  
 Route::get('/cat/products/{category}', [PageController::class, 'catProducts'])->name('catProducts');
 Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
 Route::get('/{product:slug}', [PageController::class, 'productDetails'])->name('productDetails');
