@@ -13,7 +13,7 @@ Route::get('/{product:slug}', [PageController::class, 'productDetails'])->name('
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'cart'])->name('cart');
 Route::post('/cart/add', [App\Http\Controllers\CartController::class, 'cartAdd'])->name('cart.add');
