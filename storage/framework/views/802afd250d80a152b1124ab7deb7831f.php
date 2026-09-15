@@ -158,7 +158,7 @@
 
         
 
-        <di v class="bg-gray content p-tb-30">
+        <div class="bg-gray content p-tb-30">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-lg-9 d-pr-0">
@@ -625,7 +625,7 @@
                 </div>
 
             </div>
-        </di>
+        </div>
 
         <div class="overlay"></div>
     </body>
